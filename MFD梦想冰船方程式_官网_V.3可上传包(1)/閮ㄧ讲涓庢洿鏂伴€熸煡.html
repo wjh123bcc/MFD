@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MFD 官网 · 部署与更新速查</title>
+<style>
+:root{--red:#e10600;--cyan:#00b8d4;--bg:#0d0d12}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#e8eaed;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75;-webkit-text-size-adjust:100%}
+.wrap{max-width:860px;margin:0 auto;padding:28px 18px 80px}
+h1{font-size:26px;background:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.3;margin:0 0 6px}
+.meta{color:#8a8f98;font-size:13px;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.08)}
+h2{font-size:20px;margin:38px 0 12px;padding-left:11px;border-left:5px solid var(--red)}
+h3{font-size:16px;margin:22px 0 8px;color:#fff}
+p{margin:10px 0}
+a{color:var(--cyan)}
+code{background:rgba(0,184,212,.14);color:#7fdcea;padding:2px 7px;border-radius:5px;font-size:13px;word-break:break-all}
+pre{background:#12141c;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;overflow-x:auto}
+pre code{background:none;color:#cdd3de;padding:0}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px;display:block;overflow-x:auto;white-space:nowrap}
+th,td{border:1px solid rgba(255,255,255,.1);padding:9px 11px;text-align:left}
+th{background:rgba(225,6,0,.18);color:#fff}
+tr:nth-child(even){background:rgba(255,255,255,.03)}
+ul,ol{padding-left:22px}
+li{margin:6px 0}
+strong{color:#fff}
+hr{border:none;border-top:1px solid rgba(255,255,255,.08);margin:30px 0}
+.toc{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 18px;backdrop-filter:blur(14px)}
+.toc a{display:block;color:#c9d1d9;text-decoration:none;padding:3px 0;font-size:14px}
+.toc a:hover{color:var(--cyan)}
+@media(max-width:520px){h1{font-size:21px}h2{font-size:18px}body{font-size:15px}}
+</style></head><body><div class="wrap">
+<div class="toc"><strong style="color:var(--red)">目录</strong>
+<a href="#一上传到网上推荐腾讯云-edgeone-pages免费国内快微信扫码">一、上传到网上</a>
+<a href="#二以后随时改随时更新只改一个地方">二、随时改</a>
+<a href="#三改什么改哪里速查表">三、改什么改哪里</a>
+<a href="#四性能与防闪退说明已内置不用你操作">四、性能与防闪退</a>
+<a href="#五已实现的-12-个分区点击导航即可进入">五、12 个分区</a>
+<a href="#六已录入的-v2027-赛规要点核对无误">六、赛规要点</a>
+<a href="#七务必留意的-3-件事">七、务必留意</a>
+<a href="#八常见故障排查">八、故障排查</a>
+</div>
+<h1>MFD 梦想冰船方程式 2027 赛季官网 · 部署与更新速查</h1>
+<p>> 单文件版：<code>MFD梦想冰船方程式_2027赛季官网.html</code></p>
+<p>> 双击即可在任意浏览器打开预览，<strong>离线也能看</strong>。</p>
+<p>> 本页说明如何把它放到公网上，以及如何随时改内容。</p>
+<hr>
+<h2>一、上传到网上（推荐：腾讯云 EdgeOne Pages，免费、国内快、微信扫码）</h2>
+<h3>第 1 步：准备账号（2 分钟）</h3>
+<li>手机/电脑浏览器打开：<code>https://cloud.tencent.com</code></li>
+<li>点右上角 <strong>登录</strong> → 选 <strong>微信扫码</strong> → 用微信扫一下确认</li>
+<li>首次登录需 <strong>实名认证</strong>（身份证 + 人脸，约 2 分钟，国内法规强制要求）</li>
+<h3>第 2 步：开通 EdgeOne Pages（1 分钟）</h3>
+<li>搜索框输入 <strong>EdgeOne Pages</strong> 并进入</li>
+<p>   - 直达：<code>https://console.cloud.tencent.com/edgeone/pages</code></p>
+<li>点 <strong>立即开通</strong> → 选 <strong>免费版</strong></li>
+<h3>第 3 步：上传网站（3 分钟）</h3>
+<li>点 <strong>创建项目</strong> → <strong>上传文件夹</strong></li>
+<li><strong>必须选中以下文件</strong>（保持同名，不要改扩展名）：</li>
+<p>   - <code>MFD梦想冰船方程式_2027赛季官网.html</code> ← 主文件，必须有</p>
+<p>   - <code>emblem/emblem-mfd1.jpg</code> ← 一级联赛赛徽</p>
+<p>   - <code>emblem/emblem-mfd2.jpg</code> ← 二级联赛赛徽</p>
+<p>   - <code>gal-dandong.jpg</code> 等 8 张相册图</p>
+<p>   - <code>qr.png</code> ← 赛事群二维码</p>
+<li><strong>关键</strong>：<code>MFD梦想冰船方程式_2027赛季官网.html</code> 必须放在<strong>最外层</strong>，不要套在文件夹里</li>
+<li>点 <strong>开始部署</strong>，等待约 1 分钟</li>
+<h3>第 4 步：拿到网址</h3>
+<li>部署完成后，控制台会给出一个网址，形如：<code>https://mfd-xxxx.pages.dev</code></li>
+<li>点 <strong>访问</strong> 即可看到你的官网</li>
+<li>建议点 <strong>自定义域名</strong>，绑定你自己的域名（如 <code>mfd.cn</code>，需备案）</li>
+<hr>
+<h2>二、以后"随时改、随时更新"（只改一个地方）</h2>
+<h3>方式 A：在 EdgeOne 控制台改（手机可操作）</h3>
+<li>打开 EdgeOne Pages 控制台 → 进入你的项目</li>
+<li>点开文件列表里的 <code>MFD梦想冰船方程式_2027赛季官网.html</code></li>
+<li>在文件内容里搜索 <code>const DATA = {</code></li>
+<li>修改后面的文字、数字、链接</li>
+<li>点 <strong>保存 / 提交</strong></li>
+<li><strong>约 30 秒后网站自动更新</strong>，不用重新上传</li>
+<h3>方式 B：本地改完重新上传</h3>
+<li>用文本编辑器（电脑用 VS Code / 手机用 MT管理器、QuickEdit）打开 html</li>
+<li>搜索 <code>const DATA = {</code>，改内容</li>
+<li>保存后，回到 EdgeOne 控制台 → <strong>重新上传</strong> 该文件覆盖即可</li>
+<hr>
+<h2>三、改什么、改哪里（速查表）</h2>
+<table>
+<tr><th>想干的事</th><th>改 <code>const DATA</code> 里的哪里</th><th>怎么改</th></tr>
+<tr><td>改倒计时目标</td><td><code>site.nextRace</code></td><td>改成 <code>"2026-12-20T19:30:00+08:00"</code></td></tr>
+<tr><td>更新比赛成绩</td><td><code>standings.drivers[].pts</code></td><td>改数字，<strong>页面自动按积分从高到低重排</strong></td></tr>
+<tr><td>更新车队积分</td><td><code>standings.teams[].pts</code></td><td>改数字，自动重排</td></tr>
+<tr><td>新增赛道投稿</td><td><code>tracks</code> 数组</td><td>加一条 <code>{title:"...", desc:"...", video:"https://search.bilibili.com/..."}</code></td></tr>
+<tr><td>换相册图</td><td>8 张 <code>gal-*.jpg</code></td><td><strong>同名文件直接覆盖</strong>，代码一行不用动</td></tr>
+<tr><td>发新公告</td><td><code>news</code> 数组</td><td>在<strong>最前面</strong>加一条 <code>{title:"...", date:"2026-10-25", tag:"战报"}</code></td></tr>
+<tr><td>加赞助商</td><td><code>sponsors</code> 数组</td><td>加 <code>{name:"...", tier:1}</code>（tier:1=冠名金边，tier:2=战略）</td></tr>
+<tr><td>改车手/车队名单</td><td><code>teams</code> 数组</td><td>按 <code>tier:"一级"</code> / <code>"二级"</code> / <code>"替补"</code> 分类填入</td></tr>
+<tr><td>换赛徽</td><td><code>emblem-mfd1.jpg</code> / <code>emblem-mfd2.jpg</code></td><td>同名文件覆盖</td></tr>
+<tr><td>换群二维码</td><td><code>qr.png</code></td><td>同名文件覆盖（<strong>务必用真实二维码</strong>）</td></tr>
+<tr><td>改联系方式</td><td><code>contact.email</code></td><td>改成新邮箱</td></tr>
+</table>
+<hr>
+<h2>四、性能与防闪退说明（已内置，不用你操作）</h2>
+<p>本官网已针对 <strong>iPad 5（A8, 2GB 内存）</strong> 与 <strong>一加 Turbo 6V（12GB）</strong> 做了自适应降级：</p>
+<table>
+<tr><th>项目</th><th>iPad 5（低功耗档）</th><th>一加 Turbo 6V</th></tr>
+<tr><td>速度线粒子</td><td>0 条（直接移除 DOM）</td><td>30 条</td></tr>
+<tr><td>CSS 动画</td><td>全部禁用</td><td>正常</td></tr>
+<tr><td>毛玻璃</td><td>降级为 <code>rgba(18,18,22,.94)</code> 纯色</td><td><code>blur(20px) saturate(165%)</code></td></tr>
+<tr><td>图片解码</td><td>懒加载 + 进视口才请求</td><td>正常</td></tr>
+<tr><td>倒计时</td><td>只改写变化的数字，不触发 layout</td><td>同</td></tr>
+<tr><td>滚动</td><td>rAF 节流 + passive 监听</td><td>同</td></tr>
+<tr><td>Canvas 纹理</td><td>DPR 上限 2，强制不超 1920²</td><td>同</td></tr>
+<tr><td>后台</td><td>切到其他 App 自动暂停定时器</td><td>同</td></tr>
+</table>
+<p><strong>触发条件</strong>：浏览器 <code>navigator.deviceMemory ≤ 2</code> 或 UA 含 <code>iPad5</code> 等老设备标识，自动进入低功耗档。</p>
+<hr>
+<h2>五、已实现的 12 个分区（点击导航即可进入）</h2>
+<p><code>赛事</code> <code>联赛</code> <code>赛程</code> <code>积分榜</code> <code>规则</code> <code>车队</code> <code>公告</code> <code>相册</code> <code>赛道投稿</code> <code>报名</code> <code>赞助商</code> <code>联系</code></p>
+<h3>已验证的交互</h3>
+<li>积分榜：车手榜 / 车队榜切换，<strong>自动降序</strong></li>
+<li>规则：13 章折叠展开（原生 <code><details></code>，低端机无 JS 也能展开）</li>
+<li>相册：点击大图 Lightbox（图片未加载完不弹，防空白闪）</li>
+<li>报名：无后端也能用 —— 提交后<strong>调起邮件 + 剪贴板兜底</strong>，数据不丢</li>
+<li>导航：平滑滚动 + 高亮滑条 + <strong>LOGO 红蓝切换</strong>（进到积分榜/赛道投稿/联系区自动切蓝底 MFD2）</li>
+<li>滚动进度条</li>
+<hr>
+<h2>六、已录入的 V.2027 赛规要点（核对无误）</h2>
+<li><strong>三级联赛</strong>：MFDPL 特级（审核晋升、不占常规席位、不参与降级）/ 一级 / 二级</li>
+<li><strong>定级赛</strong>：分二键组与摇杆组、不混组；白胎起步、个人刷圈、<strong>5 圈取最快</strong>；组内前 <strong>50%</strong> 晋升</li>
+<li><strong>原 120% 标准废除</strong> → 统一为<strong>杆位圈速 107%</strong> 及格线，次级联赛不限</li>
+<li><strong>车队制</strong>：每赛季 4 队；每队每级至多 <strong>3 席</strong>；正赛席位每场每队固定 3 个</li>
+<li><strong>排位赛 Q1/Q2/Q3</strong>：12 人 → 8 人 → 4 人；被淘汰按位置排发车顺位、<strong>不重新排序</strong>；跳表需二次排位 + 录屏 + 赛会手动计时</li>
+<li><strong>积分</strong>：25 / 15 / 10 / 8 / 1，最快单圈 +1；未完赛不计分；中途退赛若已具明显领先优势<strong>可保留积分</strong></li>
+<li><strong>防守 / 让车 / 红旗 / 进站</strong>：</li>
+<p>  - 恶意阻挡（停车超 <strong>3 秒</strong>）→ Dsq</p>
+<p>  - 被套圈必须<strong>进入缓冲区</strong>让车；让车指令不规范双方无责</p>
+<p>  - 红旗触发：<strong>有效车手 < 4 人</strong> 或 <strong>黄旗 ≥ 3 次</strong>；重启选胎须一致、发车位须一致，违者 Dsq；恶意主张红旗 → Dsq</p>
+<p>  - 强制一次进站换胎；<strong>禁止全程重复轮胎</strong>（红红红 / 黄黄黄），可用白红红、红黄黄等组合</p>
+<li><strong>参赛键位</strong>：允许摇杆 / 二键，<strong>不允许电脑端玩家或连接外设 → 永久禁赛</strong></li>
+<li><strong>改动规则限制</strong>：私改赛事系统 / 规则 / 群规 → 永久禁赛，<strong>仅主办方（繁星）可授权</strong></li>
+<li><strong>处罚</strong>：梦想驾照 <strong>5 分</strong>；观察期 <strong>1 月 / 半年 / 永久</strong>；无期限禁赛可递交检讨书回归；永久禁赛原则上不可回归</li>
+<hr>
+<h2>七、务必留意的 3 件事</h2>
+<li><strong><code>qr.png</code> 是占位图</strong>：沙盒无法识别图片中的二维码内容。请在微信里把<strong>真实群二维码长按保存 → 导出 → 命名为 <code>qr.png</code> 同名替换</strong>。</li>
+<li><strong>相册 8 张图是程序合成的冰面氛围图</strong>：把你的真实比赛截图按 <code>gal-dandong.jpg</code> 等文件名覆盖即可，代码不用改。</li>
+<li><strong>赛徽已按你的原图重绘</strong>：若要用你提供的原始 PNG（白字透明），把文件命名为 <code>emblem-mfd1.jpg</code> / <code>emblem-mfd2.jpg</code> 覆盖即可。</li>
+<hr>
+<h2>八、常见故障排查</h2>
+<table>
+<tr><th>现象</th><th>原因</th><th>解决</th></tr>
+<tr><td>打开一片空白</td><td>html 被套在文件夹里</td><td>确保 html 在根目录</td></tr>
+<tr><td>图片全裂</td><td>图片未一起上传</td><td>8 张 gal-*.jpg + qr.png + emblem/ 一起上传</td></tr>
+<tr><td>动画卡顿</td><td>设备较老，已自动降级</td><td>正常现象，已禁用动画保流畅</td></tr>
+<tr><td>改了不生效</td><td>浏览器缓存</td><td>强制刷新：iOS 点地址栏刷新，Android 清缓存</td></tr>
+<tr><td>想绑域名</td><td>需备案</td><td>国内域名首次使用须备案，约 7-20 天</td></tr>
+</table>
+<hr>
+<p>赛事运营组 · MFD 梦想冰船方程式</p>
+<p>规则版本：V.2027</p>
+<p>官网版本：v3.0（单文件 · 性能自适应 · 毛玻璃 · ColorOS 16 式过场）</p>
+</div></body></html>

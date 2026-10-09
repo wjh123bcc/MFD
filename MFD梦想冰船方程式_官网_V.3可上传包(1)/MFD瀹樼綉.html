@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#e10600">
+<meta name="description" content="MFD 梦想冰船方程式赛事官网：赛程、积分榜、赛事规则、车队与车手报名。">
+<title>MFD 梦想冰船方程式 · 2026 赛季</title>
+<style>
+/* ============ 性能自适应（iPad 5 / 一加 Turbo 6V 双档） ============ */
+:root{
+  --red:#e10600; --red2:#ff3b2e; --cyan:#00c6cf; --cyan2:#5fe3ea;
+  --ink:#11141a; --ink2:#1b2030; --line:rgba(255,255,255,.10);
+  --glass:rgba(255,255,255,.075);
+  --blur:20px; --dur:560ms; --ease:cubic-bezier(.30,.78,0,1);
+}
+.perf-low{ --blur:0px; --dur:0ms; }
+.perf-low *{ animation:none !important; transition:none !important; }
+
+/* ============ 基础 ============ */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#e10600 #0a0c12}
+body{
+  font-family:"PingFang SC","HarmonyOS Sans","Microsoft YaHei",-apple-system,sans-serif;
+  background:#0a0c12; color:#eef1f6; line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  /* 全局通透底色：深空 + 微弱极光 */
+  background-image:
+    radial-gradient(1200px 800px at 80% -10%, rgba(0,198,207,.16), transparent 60%),
+    radial-gradient(1000px 700px at 0% 10%, rgba(225,6,0,.20), transparent 55%),
+    radial-gradient(900px 600px at 50% 110%, rgba(95,227,234,.10), transparent 60%);
+  background-attachment:fixed;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
+button,a,summary{-webkit-touch-callout:none}
+:focus-visible{outline:3px solid var(--cyan2);outline-offset:3px}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--red),var(--cyan));border-radius:9px}
+::-webkit-scrollbar-track{background:#0a0c12}
+
+/* ============ 滚动进度条 ============ */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:2000;
+  background:linear-gradient(90deg,var(--red),var(--cyan));
+  box-shadow:0 0 14px rgba(225,6,0,.75);will-change:width;transform:translateZ(0)}
+
+/* ============ 毛玻璃导航 ============ */
+nav{position:fixed;inset:0 0 auto 0;z-index:1000;
+  background:rgba(10,12,18,.52);
+  backdrop-filter:blur(var(--blur)) saturate(165%);
+  -webkit-backdrop-filter:blur(var(--blur)) saturate(165%);
+  border-bottom:1px solid var(--line);
+  contain:paint layout;
+}
+.nav-in{max-width:1320px;margin:0 auto;padding:calc(12px + env(safe-area-inset-top)) 22px 12px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:11px;flex:0 0 auto}
+.brand .mk{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--red),#7a0400);
+  box-shadow:0 6px 18px rgba(225,6,0,.42),inset 0 1px 0 rgba(255,255,255,.25)}
+.brand .mk b{color:#fff;font-size:13px;letter-spacing:-.5px;font-weight:800}
+.brand-txt{display:flex;flex-direction:column;line-height:1.15}
+.brand-txt span:first-child{font-weight:800;font-size:15px;letter-spacing:.5px}
+.brand-txt span:last-child{font-size:10px;color:#93a0b3;letter-spacing:1.4px}
+nav ul{display:flex;flex:1 1 auto;min-width:0;gap:4px;list-style:none;margin-left:auto;overflow-x:auto;
+  scrollbar-width:none;padding:2px}
+nav ul::-webkit-scrollbar{display:none}
+nav ul{overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+nav a{display:block;padding:8px 12px;border-radius:10px;font-size:13px;color:#c9d2e0;
+  white-space:nowrap;position:relative;transition:color .28s var(--ease),background .28s var(--ease)}
+nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
+nav a.on{color:#fff;background:linear-gradient(135deg,rgba(225,6,0,.40),rgba(0,198,207,.24))}
+nav a.on::after{content:"";position:absolute;left:50%;bottom:2px;width:16px;height:2px;border-radius:2px;
+  background:var(--red);transform:translateX(-50%)}
+.nav-cta{flex:0 0 auto;padding:9px 16px;border-radius:20px;font-size:12.5px;font-weight:700;
+  background:linear-gradient(135deg,var(--red),var(--red2));
+  box-shadow:0 8px 20px rgba(225,6,0,.38);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.nav-cta:hover{transform:translateY(-1px) scale(1.03);box-shadow:0 12px 26px rgba(225,6,0,.55)}
+
+/* ============ 通用区块 ============ */
+section{padding:104px 22px 70px;max-width:1320px;margin:0 auto;position:relative;contain:content;scroll-margin-top:92px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:2.6px;
+  color:var(--cyan2);text-transform:uppercase;margin-bottom:14px;font-weight:700}
+.kicker::before{content:"";width:26px;height:2px;background:linear-gradient(90deg,var(--cyan),transparent)}
+h2{font-size:clamp(26px,5vw,42px);line-height:1.18;font-weight:850;letter-spacing:-.5px;margin-bottom:8px}
+.h2sub{color:#8d9aad;font-size:14px;margin-bottom:38px;max-width:640px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:38px}
+.eyebrow{width:56px;height:56px;border-radius:15px;display:grid;place-items:center;font-size:22px;font-weight:800;
+  background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(10px)}
+.blk{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:20px;
+  backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);
+  box-shadow:0 18px 46px rgba(0,0,0,.28);contain:paint}
+.blk:hover{border-color:rgba(255,255,255,.20)}
+
+/* ============ 首屏 ============ */
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:120px 22px 60px;position:relative;overflow:hidden;max-width:none}
+.hero-bg{position:absolute;inset:0;z-index:-2;
+  background:
+    radial-gradient(70% 60% at 22% 12%, rgba(225,6,0,.42), transparent 60%),
+    radial-gradient(55% 50% at 88% 22%, rgba(0,198,207,.34), transparent 62%),
+    radial-gradient(60% 70% at 50% 118%, rgba(95,227,234,.18), transparent 65%),
+    linear-gradient(160deg,#140604 0%,#0a0c12 48%,#04131a 100%);
+  filter:saturate(1.08);
+}
+/* 速度线：低功耗设备直接不渲染 */
+.speed{position:absolute;inset:0;z-index:-1;opacity:.5;will-change:transform}
+.speed i{position:absolute;left:0;height:1px;width:120px;background:linear-gradient(90deg,rgba(255,255,255,.85),transparent);
+  animation:shoot linear infinite;transform:translateZ(0)}
+@keyframes shoot{from{transform:translate3d(-160px,0,0)}to{transform:translate3d(110vw,0,0)}}
+.emblem{width:min(74vw,880px);filter:drop-shadow(0 26px 54px rgba(0,0,0,.65));
+  animation:floaty 8.2s ease-in-out infinite;will-change:transform}
+@keyframes floaty{0%,100%{transform:translate3d(0,0,0) rotate(-1.1deg)}50%{transform:translate3d(0,-14px,0) rotate(.8deg)}}
+.hero h1{font-size:clamp(30px,7.4vw,74px);font-weight:880;letter-spacing:-1.5px;line-height:1.04;
+  background:linear-gradient(110deg,#fff 8%,#ffd9d6 42%,#b9fcff 78%,#fff 96%);
+  background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 6.4s ease infinite}
+@keyframes shine{to{background-position:200% 0}}
+.hero .tag{margin-top:16px;font-size:clamp(13px,2.6vw,17px);color:#a8b4c6;letter-spacing:1.5px}
+.cd{display:flex;gap:10px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+.cd div{min-width:76px;padding:14px 10px;border-radius:16px;
+  background:rgba(255,255,255,.06);border:1px solid var(--line);backdrop-filter:blur(12px)}
+.cd b{display:block;font-size:clamp(24px,6vw,38px);font-weight:850;line-height:1;
+  font-variant-numeric:tabular-nums;
+  background:linear-gradient(160deg,var(--red2),var(--cyan2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cd span{font-size:11px;color:#93a0b3;letter-spacing:1.6px;margin-top:6px;display:block}
+.hero-cta{display:flex;gap:12px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+.btn{padding:15px 30px;border-radius:30px;font-weight:750;font-size:15px;position:relative;overflow:hidden;
+  transition:transform .34s var(--ease),box-shadow .34s var(--ease)}
+.btn-red{background:linear-gradient(135deg,var(--red),var(--red2));box-shadow:0 14px 30px rgba(225,6,0,.40)}
+.btn-ghost{background:rgba(255,255,255,.07);border:1px solid var(--line)}
+.btn:hover{transform:translateY(-2px) scale(1.02)}
+.hero-meta{position:absolute;left:22px;bottom:22px;font-size:11.5px;color:#7c899c;letter-spacing:1.2px;text-align:left}
+.hero-meta b{color:#c9d2e0;font-weight:700}
+.scroll-hint{position:absolute;right:24px;bottom:26px;font-size:11px;color:#7c899c;writing-mode:vertical-rl;
+  letter-spacing:3px;animation:bob 2.4s ease infinite}
+@keyframes bob{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(8px);opacity:1}}
+
+/* ============ 数据卡 ============ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{padding:24px 20px;border-radius:18px;position:relative;overflow:hidden;cursor:default}
+.stat .n{font-size:clamp(28px,5.6vw,46px);font-weight:880;line-height:1;font-variant-numeric:tabular-nums;
+  background:linear-gradient(150deg,#fff,var(--cyan2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{font-size:13px;color:#a3aec0;margin-top:8px;letter-spacing:.5px}
+.stat .g{position:absolute;right:-22px;bottom:-22px;width:90px;height:90px;border-radius:50%;
+  background:radial-gradient(circle,rgba(225,6,0,.45),transparent 70%)}
+.stat:nth-child(2) .g{background:radial-gradient(circle,rgba(0,198,207,.42),transparent 70%)}
+.stat:nth-child(3) .g{background:radial-gradient(circle,rgba(255,196,0,.34),transparent 70%)}
+
+/* ============ 联赛三级卡 ============ */
+.tiers{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:16px}
+.tier{padding:26px;border-radius:20px;position:relative;overflow:hidden;contain:paint}
+.tier-pl{background:linear-gradient(150deg,rgba(255,196,0,.14),rgba(255,196,0,.02) 70%);
+  border-color:rgba(255,196,0,.32);box-shadow:0 20px 50px rgba(255,196,0,.12)}
+.tier-1{border-color:rgba(225,6,0,.42)}
+.tier-2{border-color:rgba(0,198,207,.34)}
+.tier .lvl{font-size:11.5px;letter-spacing:2.4px;font-weight:800}
+.tier-pl .lvl{color:#ffce54}
+.tier-1 .lvl{color:var(--red2)}
+.tier-2 .lvl{color:var(--cyan2)}
+.tier h3{font-size:clamp(19px,3.4vw,25px);margin:10px 0 6px;font-weight:820}
+.tier p{font-size:13px;color:#98a5b7;line-height:1.7}
+.tier .seat{display:inline-block;margin-top:14px;padding:6px 12px;border-radius:20px;font-size:11.5px;
+  background:rgba(255,255,255,.08);border:1px solid var(--line);color:#d3dae6}
+
+/* ============ 赛程时间轴 ============ */
+.tl{position:relative;padding-left:26px}
+.tl::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,var(--red),var(--cyan),transparent)}
+.tl-item{position:relative;padding:18px 20px;margin-bottom:12px;border-radius:16px;
+  display:flex;gap:16px;align-items:flex-start;transition:transform .36s var(--ease),background .36s var(--ease)}
+.tl-item::before{content:"";position:absolute;left:-24px;top:24px;width:12px;height:12px;border-radius:50%;
+  background:#2a3348;border:2px solid #556}
+.tl-item.done::before{background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.tl-item.active::before{background:var(--red);border-color:#ff8a80;box-shadow:0 0 0 0 rgba(225,6,0,.6);
+  animation:pulse 1.5s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 14px rgba(225,6,0,0)}100%{box-shadow:0 0 0 0 rgba(225,6,0,0)}}
+.tl-item:hover{transform:translateX(5px);background:rgba(255,255,255,.075)}
+.tl-d{font-variant-numeric:tabular-nums;font-size:13px;color:var(--cyan2);min-width:96px;font-weight:700}
+.tl-b{flex:1}
+.tl-b h4{font-size:16.5px;font-weight:760}
+.tl-b small{color:#8d9aad;font-size:12.5px}
+.tl-b .res{margin-top:7px;font-size:12.5px;color:#c3cddb}
+.pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:10.5px;font-weight:750;letter-spacing:.6px;margin-left:8px}
+.pill-done{background:rgba(0,198,207,.14);color:var(--cyan2)}
+.pill-active{background:rgba(225,6,0,.18);color:var(--red2)}
+.pill-next{background:rgba(255,255,255,.07);color:#aab5c6}
+
+/* ============ 积分榜 ============ */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tab{padding:11px 22px;border-radius:24px;font-size:13.5px;font-weight:720;cursor:pointer;
+  background:rgba(255,255,255,.06);border:1px solid var(--line);color:#b9c3d2;
+  transition:all .3s var(--ease);font-family:inherit}
+.tab:hover{color:#fff}
+.tab.on{color:#fff;border-color:transparent;
+  background:linear-gradient(135deg,var(--red),var(--cyan));box-shadow:0 10px 24px rgba(225,6,0,.32)}
+.st-blk{padding:10px;border-radius:18px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;contain:paint}
+th{text-align:left;padding:13px 12px;font-size:11px;letter-spacing:1.5px;color:#7c899c;
+  border-bottom:1px solid var(--line);font-weight:700}
+td{padding:12px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:middle}
+tbody tr{transition:background .28s var(--ease),transform .28s var(--ease)}
+tbody tr:hover{background:rgba(255,255,255,.065);transform:translateX(3px)}
+.rk{font-variant-numeric:tabular-nums;width:44px;font-weight:800;color:#6f7d91}
+.rk-gold{color:#ffce54;text-shadow:0 0 10px rgba(255,206,84,.55)}
+.rk-silver{color:#dfe6ef}
+.rk-bronze{color:#d98a5b}
+.driver{display:flex;align-items:center;gap:11px;font-weight:700}
+.av{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:12px;font-weight:800;
+  background:linear-gradient(135deg,var(--red),var(--cyan));color:#04131a;flex:0 0 auto}
+.team-tag{padding:3px 9px;border-radius:6px;font-size:10.5px;font-weight:750;letter-spacing:.7px;
+  background:rgba(255,255,255,.07);color:#b9c3d2}
+.pts{font-weight:880;font-variant-numeric:tabular-nums;color:var(--cyan2);text-align:right;font-size:15px}
+.fl{color:var(--red2);font-weight:750}
+.note{margin-top:14px;font-size:11.5px;color:#7c899c;line-height:1.8}
+.note code{background:rgba(255,255,255,.07);padding:1px 6px;border-radius:5px;font-size:10.5px}
+
+/* ============ 规则折叠 ============ */
+details{margin-bottom:10px;border-radius:14px;overflow:hidden;transition:background .3s var(--ease)}
+details[open]{background:rgba(255,255,255,.065)}
+summary{padding:17px 20px;cursor:pointer;font-weight:720;font-size:15px;list-style:none;
+  display:flex;align-items:center;gap:12px;contain:paint}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"›";font-size:20px;color:var(--cyan2);transition:transform .36s var(--ease);
+  width:16px;height:16px;display:grid;place-items:center;line-height:1}
+details[open] summary::before{transform:rotate(90deg)}
+summary .idx{font-size:10.5px;padding:3px 7px;border-radius:5px;background:rgba(225,6,0,.18);color:var(--red2);font-weight:800}
+.rule-body{padding:4px 20px 20px 48px;font-size:13.5px;color:#c3cddb;line-height:1.9}
+.rule-body b{color:#fff}
+.rule-body .hl{color:var(--red2);font-weight:750}
+.rule-body .ok{color:var(--cyan2);font-weight:750}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{padding:6px 12px;border-radius:20px;font-size:11.5px;background:rgba(255,255,255,.06);
+  border:1px solid var(--line);color:#c3cddb}
+
+/* ============ 车队 ============ */
+.teams{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.team{padding:22px;border-radius:20px}
+.team-hd{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.team-hd .badge{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  font-size:17px;font-weight:880;color:#04131a}
+.team-hd h3{font-size:19px;font-weight:820}
+.team-hd .sum{margin-left:auto;font-size:11.5px;color:#8d9aad}
+.team-hd .sum b{color:var(--cyan2);font-size:16px;font-variant-numeric:tabular-nums}
+.tcat{font-size:11px;letter-spacing:1.8px;color:var(--cyan2);font-weight:750;margin:14px 0 8px;
+  display:flex;align-items:center;gap:7px}
+.tcat::before{content:"";width:16px;height:2px;background:var(--cyan)}
+.seat{display:flex;align-items:center;gap:10px;padding:9px 12px;margin-bottom:6px;border-radius:11px;
+  background:rgba(255,255,255,.04);font-size:13.5px;transition:transform .3s var(--ease),background .3s var(--ease)}
+.seat:hover{transform:translateX(4px);background:rgba(255,255,255,.085)}
+.seat .g{width:8px;height:8px;border-radius:50%;background:var(--red);flex:0 0 auto}
+.seat.sub .g{background:var(--cyan)}
+.seat .nm{font-weight:720;flex:1}
+.seat .st{font-size:10.5px;padding:2px 7px;border-radius:5px;background:rgba(255,255,255,.07);color:#aab5c6}
+.vac{color:#7c899c;font-style:italic;font-weight:500}
+.lmb .badge{background:linear-gradient(135deg,#e10600,#ff6b5e)}
+.lindong .badge{background:linear-gradient(135deg,#00c6cf,#7feaef)}
+.lingjie .badge{background:linear-gradient(135deg,#7c4dff,#b79bff)}
+.lang .badge{background:linear-gradient(135deg,#ff9d00,#ffd166)}
+
+/* ============ 新闻 ============ */
+.news{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.n{display:block;padding:20px;border-radius:18px;transition:transform .4s var(--ease),border-color .4s var(--ease);contain:paint}
+.n:hover{transform:translateY(-5px)}
+.n .d{font-size:11.5px;color:var(--cyan2);letter-spacing:.8px;font-weight:700}
+.n h4{font-size:16px;margin:9px 0 7px;line-height:1.5;font-weight:770}
+.n p{font-size:12.5px;color:#93a0b3;line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nt{display:inline-block;padding:2px 8px;border-radius:5px;font-size:10px;font-weight:750;letter-spacing:.7px}
+.nt-race{background:rgba(225,6,0,.16);color:var(--red2)}
+.nt-rule{background:rgba(0,198,207,.14);color:var(--cyan2)}
+.nt-biz{background:rgba(255,206,84,.14);color:#ffce54}
+
+/* ============ 相册 ============ */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.gi{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;cursor:pointer;
+  background:linear-gradient(135deg,#1a2030,#0d111c)}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),opacity .5s}
+.gi:hover img{transform:scale(1.07)}
+.gi .cap{position:absolute;left:0;right:0;bottom:0;padding:24px 12px 10px;
+  background:linear-gradient(0deg,rgba(4,6,12,.94),transparent);font-size:11.5px;color:#e6ebf3}
+.lb{position:fixed;inset:0;z-index:3000;display:none;place-items:center;padding:20px;
+  background:rgba(4,6,12,.94);backdrop-filter:blur(16px);cursor:zoom-out}
+.lb.on{display:grid}
+.lb img{max-width:min(92vw,1180px);max-height:82vh;border-radius:14px;
+  box-shadow:0 30px 90px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.08)}
+.lb .cap{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:#c9d2e0;font-size:13px;letter-spacing:1px}
+.lb .x{position:absolute;top:18px;right:20px;width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:19px;cursor:pointer}
+
+/* ============ 赛道投稿 ============ */
+.tracks{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.tk{padding:18px;border-radius:18px;display:flex;gap:14px;align-items:flex-start;contain:paint}
+.tk .tn{width:54px;height:54px;border-radius:14px;flex:0 0 auto;position:relative;overflow:hidden;
+  background:linear-gradient(150deg,var(--cyan),#035b66)}
+.tk .tn span{position:absolute;inset:0;display:grid;place-items:center;font-size:19px;font-weight:880;color:#04131a}
+.tk-b{flex:1;min-width:0}
+.tk-b h4{font-size:16.5px;font-weight:770;margin-bottom:5px}
+.tk-b p{font-size:12.5px;color:#93a0b3;line-height:1.65}
+.tk-b .go{display:inline-flex;align-items:center;gap:5px;margin-top:9px;font-size:12px;font-weight:720;
+  color:var(--cyan2);transition:gap .3s var(--ease)}
+.tk:hover .go{gap:10px}
+/* ============ 赞助商 ============ */
+.sp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.sp{height:104px;border-radius:16px;display:grid;place-items:center;text-align:center;padding:14px;
+  font-weight:780;font-size:14px;letter-spacing:.4px;position:relative;overflow:hidden;
+  transition:transform .4s var(--ease),border-color .4s var(--ease);contain:paint}
+.sp:hover{transform:translateY(-4px)}
+.sp.t1{border-color:rgba(255,206,84,.40);background:linear-gradient(150deg,rgba(255,206,84,.13),rgba(255,206,84,.02));
+  box-shadow:0 16px 40px rgba(255,206,84,.10)}
+.sp.t1::after{content:"冠名";position:absolute;top:8px;right:8px;font-size:9px;letter-spacing:1.4px;
+  padding:2px 6px;border-radius:4px;background:rgba(255,206,84,.22);color:#ffce54;font-weight:800}
+.sp.t2{border-color:rgba(255,255,255,.12)}
+.sp .lv{position:absolute;top:9px;left:10px;font-size:9px;letter-spacing:1.6px;color:#7c899c;font-weight:700}
+
+/* ============ 联系 ============ */
+.contact{display:grid;grid-template-columns:1.1fr 1fr;gap:18px}
+.ci{padding:22px;border-radius:18px;display:flex;gap:14px;align-items:flex-start;contain:paint;
+  transition:transform .36s var(--ease),border-color .36s var(--ease)}
+.ci:hover{transform:translateX(4px)}
+.ci .ic{width:42px;height:42px;border-radius:12px;flex:0 0 auto;display:grid;place-items:center;font-size:19px;
+  background:linear-gradient(135deg,var(--red),var(--cyan))}
+.ci h4{font-size:15px;font-weight:760}
+.ci p{font-size:12.5px;color:#a3aec0;word-break:break-all}
+.qr{padding:22px;border-radius:20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.qr img{width:200px;height:200px;border-radius:14px;background:#fff;padding:9px;
+  box-shadow:0 18px 44px rgba(0,0,0,.4)}
+.qr small{color:#93a0b3;font-size:11.5px;letter-spacing:.8px}
+
+/* ============ 报名 ============ */
+.reg{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:start}
+.reg-txt h3{font-size:22px;font-weight:820;margin-bottom:12px}
+.reg-txt p{color:#98a5b7;font-size:13.5px;margin-bottom:12px}
+.reg-steps{list-style:none;margin-top:16px}
+.reg-steps li{padding:10px 0 10px 34px;position:relative;font-size:13.5px;color:#c3cddb;border-bottom:1px dashed rgba(255,255,255,.07)}
+.reg-steps li::before{content:attr(data-i);position:absolute;left:0;top:10px;width:22px;height:22px;border-radius:7px;
+  background:linear-gradient(135deg,var(--red),var(--cyan));color:#04131a;font-size:11px;font-weight:850;
+  display:grid;place-items:center}
+.fld{display:block;margin-bottom:13px}
+.fld label{display:block;font-size:11.5px;letter-spacing:1.2px;color:var(--cyan2);margin-bottom:7px;font-weight:700}
+.fld input,.fld select{width:100%;padding:14px 15px;border-radius:12px;font-size:14px;font-family:inherit;
+  background:rgba(255,255,255,.05);border:1px solid var(--line);color:#eef1f6;outline:none;
+  color-scheme:dark;transition:border-color .3s var(--ease),box-shadow .3s var(--ease)}
+.fld input:focus,.fld select:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(225,6,0,.18)}
+.submit{width:100%;padding:16px;border:0;border-radius:13px;font-size:15px;font-weight:800;font-family:inherit;
+  background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;cursor:pointer;
+  box-shadow:0 14px 30px rgba(225,6,0,.38);transition:transform .34s var(--ease)}
+.submit:hover{transform:translateY(-2px)}
+
+/* ============ 页脚 ============ */
+footer{margin-top:60px;padding:44px 22px 34px;text-align:center;border-top:1px solid var(--line);
+  background:rgba(255,255,255,.025);backdrop-filter:blur(10px)}
+footer .mk{width:46px;height:46px;border-radius:13px;margin:0 auto 14px;display:grid;place-items:center;font-size:17px;font-weight:880;
+  background:linear-gradient(135deg,var(--red),var(--cyan))}
+footer .m{color:#7c899c;font-size:11.5px;line-height:1.9;letter-spacing:.6px}
+
+/* ============ 入场动画 ============ */
+.rv{opacity:0;transform:translate3d(0,26px,0);transition:opacity .62s var(--ease),transform .62s var(--ease);
+  will-change:opacity,transform;contain:paint}
+.rv.in{opacity:1;transform:none}
+
+/* ============ 响应式 ============ */
+@media(max-width:1080px){.tiers{grid-template-columns:1fr 1fr}.news,.tracks{grid-template-columns:1fr 1fr}}
+@media(max-width:820px){
+  section{padding:84px 16px 50px;scroll-margin-top:112px}
+  .stats,.teams,.contact,.reg,.gal,.sp-grid,.news,.tracks{grid-template-columns:1fr 1fr}
+  .nav-in{padding:10px 14px;gap:10px}
+  .brand-txt{display:none}
+  nav ul{margin-left:0}
+  nav a{padding:7px 9px;font-size:12.5px}
+  table{font-size:12.5px}
+  th,td{padding:10px 8px}
+  .sp-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sp{height:88px;font-size:12px}
+  .hero-meta{display:none}
+  body{background-attachment:scroll}
+}
+@media(max-width:520px){
+  .nav-in{flex-wrap:wrap;padding:calc(8px + env(safe-area-inset-top)) 12px 8px;gap:8px}
+  nav ul{order:3;flex:1 0 100%;margin:0;padding:0 0 2px}
+  nav .nav-cta{margin-left:auto;padding:8px 12px;font-size:12px}
+  nav a{padding:7px 10px}
+  section{scroll-margin-top:104px}
+  .stats,.teams,.contact,.reg,.gal,.sp-grid,.news,.tracks{grid-template-columns:1fr}
+  .tiers{grid-template-columns:1fr}
+  .sp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cd div{min-width:64px;padding:11px 7px}
+  .hero h1{letter-spacing:-.8px}
+  .tl-item{flex-direction:column;gap:6px}
+  .tl-d{min-width:0}
+  .ci{flex-direction:column;text-align:center}
+  .qr img{width:170px;height:170px}
+  .btn{padding:13px 22px}
+  .hero{flex-direction:column;gap:14px;padding:132px 18px 54px}
+  .hero-copy{order:1;width:100%;flex:0 0 auto}
+  .hero .emblem{order:2;width:min(64vw,250px);flex:0 0 auto}
+  .hero .tag{max-width:36em;margin:12px auto 0;font-size:13px;line-height:1.5;letter-spacing:.8px}
+  .hero .cd{flex-wrap:nowrap;gap:7px;margin-top:20px}
+  .hero .cd div{flex:1;min-width:0;padding:10px 6px}
+  .hero .cd b{font-size:clamp(20px,7vw,28px)}
+  .hero .cd span{font-size:10px;letter-spacing:1px}
+  .hero .hero-cta{gap:9px;margin-top:22px;flex-wrap:nowrap}
+  .hero .btn{padding:12px 16px;font-size:13px;white-space:nowrap}
+}
+@supports not (background-clip:text){
+  .hero h1,.cd b{color:#fff}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+
+<nav>
+  <div class="nav-in">
+    <div class="brand">
+      <div class="mk">MFD</div>
+      <div class="brand-txt"><span>梦想冰船方程式</span><span>MC FORMULA DREAM · 2026</span></div>
+    </div>
+    <ul>
+      <li><a href="#intro">赛事</a></li>
+      <li><a href="#tiers">联赛</a></li>
+      <li><a href="#schedule">赛程</a></li>
+      <li><a href="#standings">积分榜</a></li>
+      <li><a href="#rules">规则</a></li>
+      <li><a href="#teams">车队</a></li>
+      <li><a href="#news">公告</a></li>
+      <li><a href="#gallery">相册</a></li>
+      <li><a href="#tracks">赛道投稿</a></li>
+      <li><a href="#sponsors">赞助商</a></li>
+      <li><a href="#contact">联系</a></li>
+    </ul>
+    <a class="nav-cta" href="#register">报名参赛</a>
+  </div>
+</nav>
+
+<!-- ================= 首屏 ================= -->
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="speed" id="speed"></div>
+  <img class="emblem" id="hero-logo" src="一级赛徽.jpg" alt="MFD 一级联赛赛徽" loading="eager">
+  <div class="hero-copy">
+    <h1>速度由你定义</h1>
+    <p class="tag">MC FORMULA DREAM · 2026 赛季 · 一切由车手与观众共创</p>
+    <div class="cd" id="cd">
+      <div><b id="cd-d">--</b><span>天</span></div>
+      <div><b id="cd-h">--</b><span>时</span></div>
+      <div><b id="cd-m">--</b><span>分</span></div>
+      <div><b id="cd-s">--</b><span>秒</span></div>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-red" href="#schedule">查看赛程</a>
+      <a class="btn btn-ghost" href="#rules">赛事总则 v.2026</a>
+    </div>
+  </div>
+  <div class="hero-meta">下一场 · <b>天津站</b><br>2026.10.24 19:30（北京时间）</div>
+  <div class="scroll-hint">向下滚动</div>
+</header>
+
+<!-- ================= 赛事介绍 ================= -->
+<section id="intro">
+  <div class="kicker">About the Championship</div>
+  <div class="sec-head">
+    <div>
+      <h2>关于 MFD</h2>
+      <p class="h2sub">Mc 冰船方程式（MFD，MC Formula Dream）是一项由车手与观众共同创造的竞速赛事。2026 赛季全面升级：三级联赛、四支车队、Q1/Q2/Q3 排位淘汰、强制进站换胎、梦想驾照处罚体系。</p>
+    </div>
+    <div class="eyebrow">01</div>
+  </div>
+  <div class="stats rv">
+    <div class="stat blk"><div class="n">2026</div><div class="l">赛季</div><div class="g"></div></div>
+    <div class="stat blk"><div class="n" id="st-drivers">--</div><div class="l">注册车手</div><div class="g"></div></div>
+    <div class="stat blk"><div class="n">4</div><div class="l">车队</div><div class="g"></div></div>
+    <div class="stat blk"><div class="n">3</div><div class="l">联赛级别</div><div class="g"></div></div>
+  </div>
+</section>
+
+<!-- ================= 联赛分级 ================= -->
+<section id="tiers">
+  <div class="kicker">League System</div>
+  <div class="sec-head"><div><h2>联赛体系</h2><p class="h2sub">MFDPL 为审核晋升，不占常规席位、不参与降级；常规联赛逐级晋升：二级 → 一级 → MFDPL。每级联赛每场正赛席位至多 12 个。</p></div><div class="eyebrow">02</div></div>
+  <div class="tiers">
+    <div class="tier tier-pl blk rv">
+      <div class="lvl">PREMIER LEAGUE</div>
+      <h3>MFDPL 特级联赛</h3>
+      <p>最高级别，与常规联赛相对独立，跳出常规积分晋升链条。以通过赛会审核的顶尖车手为主体，可与高水平车手同场竞技。不占常规联赛席位，不参与常规降级。</p>
+      <span class="seat">审核晋升 · 不按积分自动升级</span>
+    </div>
+    <div class="tier tier-1 blk rv">
+      <div class="lvl">DIVISION 1</div>
+      <h3>一级联赛</h3>
+      <p>常规联赛顶级战场。每队每级至多 3 个正赛席位，共 4 队，正赛满席 12 人。</p>
+      <span class="seat">每场 12 席 · 4 队 × 3 人</span>
+    </div>
+    <div class="tier tier-2 blk rv">
+      <div class="lvl">DIVISION 2</div>
+      <h3>二级联赛</h3>
+      <p>新秀起点与替补舞台。定级赛组内前 50% 晋升一级；替补人员可正常参与，但一、二级积分不互通。</p>
+      <span class="seat">定级赛前 50% 晋升</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 赛程 ================= -->
+<section id="schedule">
+  <div class="kicker">Race Calendar</div>
+  <div class="sec-head"><div><h2>赛程安排</h2><p class="h2sub">四站定赛季。每站含定级/排位与正赛，正赛强制一次进站换胎，禁止全程重复轮胎组合。</p></div><div class="eyebrow">03</div></div>
+  <div class="tl rv" id="tl"></div>
+</section>
+
+<!-- ================= 积分榜 ================= -->
+<section id="standings" style="background:radial-gradient(900px 500px at 85% 10%,rgba(0,198,207,.09),transparent 60%);border-radius:34px">
+  <div class="kicker" style="color:var(--red2)">Standings</div>
+  <div class="sec-head"><div><h2>车手积分榜 · 2026 赛季</h2><p class="h2sub">积分制：冠军 25 / 亚军 15 / 季军 10 / 第四 8 / 其余完赛车手 1；全场最快单圈 +1。未完赛不计分；中途退赛但已具明显领先优势者，经赛会确认可保留积分。</p></div><div class="eyebrow">04</div></div>
+  <div class="tabs">
+    <button class="tab on" data-t="drivers" onclick="tab('drivers',this)">车手榜</button>
+    <button class="tab" data-t="teams" onclick="tab('teams',this)">车队榜</button>
+  </div>
+  <div class="blk st-blk rv">
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>排名</th><th>车手</th><th>缩写</th><th>车队</th><th style="text-align:right">积分</th></tr></thead>
+        <tbody id="st-body"></tbody>
+      </table>
+    </div>
+    <p class="note">※ 数据依据丹东、河北、内蒙古、天津四站成绩核算。<code>dnp</code> 未参赛 · <code>dnf</code> 未完赛 · <code>dns</code> 未起步 · <code>dnq</code> 未晋级 · <code>dsq</code> 取消资格 · <code>FL</code> 全场最快单圈。<br>天津站最终排名：浪革 洛白 +25pts｜LMB 小苗 +16pts（FL 54.8s）｜无 霜落 +10pts｜凛冬 羽苍 +8pts｜零界 帅酷 +1pt｜LMB 张火山 +1pt｜LMB 东风 +1pt｜零界 繁星 0pts（Dsq）。</p>
+  </div>
+</section>
+
+<!-- ================= 规则 ================= -->
+<section id="rules">
+  <div class="kicker">Regulations v.2026</div>
+  <div class="sec-head"><div><h2>赛事总则</h2><p class="h2sub">共 16 章核心条款。点击展开阅读。最终解释权归赛事主办方（繁星）所有，运营组将适时补充细则，以最新公告为准。</p></div><div class="eyebrow">05</div></div>
+  <div id="rules-box"></div>
+</section>
+
+<!-- ================= 车队 ================= -->
+<section id="teams">
+  <div class="kicker">Teams & Drivers</div>
+  <div class="sec-head"><div><h2>车队与车手</h2><p class="h2sub">2026 赛季设 4 支车队。每队每级联赛正赛席位至多 3 个，车队内部可招收替补，不限人手。车手按自身级别参加对应联赛，车队归属不变。</p></div><div class="eyebrow">06</div></div>
+  <div class="teams" id="teams-box"></div>
+</section>
+
+<!-- ================= 新闻 ================= -->
+<section id="news">
+  <div class="kicker">Newsroom</div>
+  <div class="sec-head"><div><h2>新闻公告</h2><p class="h2sub">战报、规则变更、商务合作与车手招募。重要变更同步于群公告公示。</p></div><div class="eyebrow">07</div></div>
+  <div class="news" id="news-box"></div>
+</section>
+
+<!-- ================= 相册 ================= -->
+<section id="gallery">
+  <div class="kicker">Highlights</div>
+  <div class="sec-head"><div><h2>精彩瞬间</h2><p class="h2sub">四站高光：丹东揭幕、河北夜战、内蒙古极速圈、天津收官。点击大图查看。</p></div><div class="eyebrow">08</div></div>
+  <div class="gal" id="gal"></div>
+</section>
+
+<!-- ================= 赛道投稿 ================= -->
+<section id="tracks" style="background:radial-gradient(800px 500px at 15% 20%,rgba(0,198,207,.08),transparent 60%);border-radius:34px">
+  <div class="kicker" style="color:var(--red2)">Track Submission</div>
+  <div class="sec-head"><div><h2>赛道投稿</h2><p class="h2sub">观众与车手共创赛道。投稿经赛会审核后可入选正赛轮转。</p></div><div class="eyebrow">09</div></div>
+  <div class="tracks" id="tracks-box"></div>
+</section>
+
+<!-- ================= 报名 ================= -->
+<section id="register">
+  <div class="kicker">Join MFD</div>
+  <div class="sec-head"><div><h2>报名参赛</h2><p class="h2sub">免费报名。新选手从低级联赛打起，每赛季按定级赛表现重新定级，原则上不得跳级（赛会特批除外）。</p></div><div class="eyebrow">10</div></div>
+  <div class="reg">
+    <div class="reg-txt blk rv" style="padding:24px">
+      <h3>如何成为 MFD 车手</h3>
+      <p>提交报名后，赛会将在 48 小时内联系你，安排定级赛批次与监督人员。</p>
+      <ul class="reg-steps">
+        <li data-i="1">填写报名表单（姓名、游戏 ID、常用键位）</li>
+        <li data-i="2">参加定级赛：白胎起步，个人刷圈，共 5 圈，取最快单圈</li>
+        <li data-i="3">按组内最快单圈前 50% 定级，进入对应联赛</li>
+        <li data-i="4">加入车队，参与 Q1/Q2/Q3 排位与正赛</li>
+      </ul>
+      <p style="margin-top:16px;color:var(--red2);font-size:12.5px">※ 允许使用摇杆与二键，不允许电脑端玩家参赛或连接外设，违者永久禁赛。</p>
+    </div>
+    <form class="blk rv" style="padding:24px" onsubmit="return reg(event)">
+      <label class="fld"><span class="l">游戏 ID</span><input name="gameId" required autocomplete="off" placeholder="如：lmbtl012"></label>
+      <label class="fld"><span class="l">真实姓名 / 称呼</span><input name="displayName" required autocomplete="name" placeholder="用于赛会与群内识别"></label>
+      <label class="fld"><span class="l">操作方式</span>
+        <select name="controlType" required><option value="">请选择</option><option>摇杆</option><option>二键</option></select>
+      </label>
+      <label class="fld"><span class="l">意向联赛</span>
+        <select name="league"><option>服从赛会定级</option><option>二级联赛</option><option>一级联赛（需审核）</option></select>
+      </label>
+      <label class="fld"><span class="l">联系方式（QQ / 微信 / 手机号）</span><input name="contact" required autocomplete="tel" placeholder="仅用于赛会通知"></label>
+      <button class="submit" type="submit">提交报名 →</button>
+      <p style="margin-top:12px;font-size:11px;color:#7c899c">提交即表示同意《MFD 赛事总则 v.2026》。赛会承诺不向第三方泄露你的联系方式。</p>
+    </form>
+  </div>
+</section>
+
+<!-- ================= 赞助商 ================= -->
+<section id="sponsors">
+  <div class="kicker">Partners</div>
+  <div class="sec-head"><div><h2>合作伙伴</h2><p class="h2sub">感谢以下品牌与个人对 MFD 的支持。冠名级享有赛事命名权与全场露出，战略级享有车队与直播露出。</p></div><div class="eyebrow">11</div></div>
+  <div class="sp-grid" id="sp"></div>
+</section>
+
+<!-- ================= 联系 ================= -->
+<section id="contact">
+  <div class="kicker">Contact</div>
+  <div class="sec-head"><div><h2>联系我们</h2><p class="h2sub">赛事主办方：繁星。商务合作、车队入驻、媒体采访、车手申诉，均可通过下方渠道联系。</p></div><div class="eyebrow">12</div></div>
+  <div class="contact">
+    <div>
+      <div class="ci blk rv"><div class="ic">✉</div><div><h4>赛事邮箱</h4><p>fengfanxingyun@qq.com</p></div></div>
+      <div class="ci blk rv"><div class="ic">◎</div><div><h4>B 站主页</h4><p>搜索「繁星RISE」「MFD梦想冰船方程式」</p></div></div>
+      <div class="ci blk rv"><div class="ic">🎮</div><div><h4>赛事群</h4><p>扫码加入车手群，获取赛程、直播与申诉通道</p></div></div>
+      <div class="ci blk rv"><div class="ic">🏁</div><div><h4>主办方</h4><p>繁星 · 仅主办方有权授权改动赛事系统与规则</p></div></div>
+    </div>
+    <div class="qr blk rv">
+      <img src="qr.png" alt="MFD 赛事群二维码" loading="lazy">
+      <div>
+        <div style="font-weight:780;font-size:15px">扫码加入 MFD 车手群</div>
+        <small>二维码有效期以群管理设置为准 · 长按可保存</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="mk">MFD</div>
+  <div class="m">MC FORMULA DREAM · 梦想冰船方程式 · 2026 赛季<br>本群规及赛规为 v.2026 版，并非最终定稿。运营组将根据实际突发状况适时调整补充，届时以最新公告为准。<br>© 2026 MFD 赛事组委会 · 最终解释权归主办方所有</div>
+</footer>
+
+<div class="lb" id="lb" onclick="this.classList.remove('on')"><div class="x">✕</div><img src="" alt=""><div class="cap"></div></div>
+
+<script>
+/* ==================================================================
+   唯一需要改的数据区（以后"随时改"只动这里）
+   ================================================================== */
+const DATA = {
+  site:{
+    name:"MFD 梦想冰船方程式",
+    season:"2026",
+    nextRace:"2026-10-24T19:30:00+08:00",   // 倒计时目标：天津站
+    hero1:"一级赛徽.jpg",                     // 一级联赛赛徽
+    hero2:"emblem/emblem-mfd2.jpg",          // 二级联赛赛徽（青蓝）
+    email:"fengfanxingyun@qq.com",
+  },
+  // 赛程（status: done=已完赛 / active=进行中 / next=下一站）
+  schedule:[
+    {date:"2026.09.26", track:"丹东站", res:"杆位 lmbtl012 94.7s · 冠军 小苗", status:"done"},
+    {date:"2026.10.03", track:"河北站", res:"杆位 小苗 76.6s · 冠军 小苗（FL 76.0s）", status:"done"},
+    {date:"2026.10.17", track:"内蒙古站", res:"杆位 小苗 38.4s · 冠军 小苗", status:"done"},
+    {date:"2026.10.24", track:"天津站（收官）", res:"19:30 开赛 · 现场直播", status:"active"}
+  ],
+  // 车手榜：pts 改动后页面自动按积分降序，无需手排
+  drivers:[
+    {n:"小苗", a:"XM", t:"LMB", pts:61, fl:2, dnf:0},
+    {n:"cilmea", a:"CL", t:"凛冬", pts:25},
+    {n:"繁星", a:"FAX", t:"零界", pts:20, dsq:1},
+    {n:"飞飞", a:"FEF", t:"浪革", pts:16},
+    {n:"洛白", a:"LUO", t:"浪革", pts:15},
+    {n:"小船只", a:"LBZ", t:"零界", pts:15, ban:true},
+    {n:"海森", a:"HAS", t:"凛冬", pts:11},
+    {n:"东风", a:"DFC", t:"LMB", pts:11},
+    {n:"Cookie(曲奇)", a:"COK", t:"LMB", pts:8, dsq:1},
+    {n:"张火山", a:"ZHH", t:"LMB", pts:2, fl:1},
+    {n:"叉斯", a:"CSR", t:"浪革", pts:3, dsq:1},
+    {n:"羽苍", a:"YVC", t:"凛冬", pts:1, dnf:1},
+    {n:"小灿", a:"XCN", t:"零界", pts:1},
+    {n:"青柠", a:"QIN", t:"LMB", pts:0, dnf:2},
+    {n:"氮碜", a:"DAC", t:"浪革", pts:0},
+    {n:"帅酷", a:"SHA", t:"零界", pts:0, dsq:1},
+    {n:"林间", a:"LUJ", t:"凛冬", pts:0},
+    {n:"小王", a:"WAN", t:"零界", pts:0},
+    {n:"MedcAly", a:"HOO", t:"LMB", pts:0, dnf:1},
+    {n:"小水", a:"MAR", t:"浪革", pts:0},
+    {n:"梨宾", a:"LIB", t:"无车队", pts:0, dns:1},
+    {n:"小蒋", a:"JIA", t:"零界", pts:0},
+    {n:"霜落", a:"SFL", t:"LMB", pts:0},
+    {n:"辛月", a:"XNY", t:"零界", pts:0},
+    {n:"Anar", a:"ANR", t:"浪革", pts:0},
+    {n:"村东", a:"CUD", t:"无车队", pts:0}
+  ],
+  teams:[
+    {name:"LMB 车队", sum:82, cls:"lmb",
+     d1:[{g:"A",n:"小苗"},{g:"B",n:"飞飞"},{g:"C",n:"霜落"}],
+     sub:[{n:"东风"},{n:"Cookie(曲奇)"},{n:"张火山"},{n:"青柠"},{n:"MedcAly"}],
+     d2:[{n:"苏沫"},{n:"叉斯"}]},
+    {name:"凛冬车队", sum:37, cls:"lindong",
+     d1:[{g:"A",n:"网友"},{g:"B",n:"羽苍"},{g:"C",n:"东风"}],
+     sub:[{n:"cilmea"},{n:"海森"},{n:"林间"}],
+     d2:[{n:"小爱"}]},
+    {name:"零界车队", sum:36, cls:"lingjie",
+     d1:[{g:"A",n:"小蒋"},{g:"B",n:"张火山"},{g:"C",n:"帅酷"}],
+     sub:[{n:"繁星（替补）"},{n:"小船只"},{n:"小灿"},{n:"辛月"},{n:"小王"}],
+     d2:[{n:"待补"}]},
+    {name:"浪革车队", sum:34, cls:"lang",
+     d1:[{g:"A",n:"空缺（待递补）",vac:1},{g:"B",n:"空缺（待递补）",vac:1},{g:"C",n:"Anar"}],
+     sub:[{n:"洛白"},{n:"叉斯"},{n:"氮碜"},{n:"小水"}],
+     d2:[{n:"Bug_Cat"}]}
+  ],
+  // 规则（折叠面板）
+  rules:[
+    {t:"一、语言规范", b:`<b>[1] 总则与基本原则</b><br>本群宗旨：为成员提供一个和谐、友善、高效、专业的交流平台。任何发言、分享行为均需遵守国家法律法规及本群规。适用于群内所有成员，涵盖文字、语音、图片、表情包、动图、视频、文件、小程序卡片、直播链接、外部网站链接等一切形式。<br><b>解释权与修改权：</b>群主及管理员保留对本群规的最终解释权及随时修改的权利，修改后在群公告公示，视为所有成员已知悉。<br><br><b>[2] 言论规范</b><br>① 严禁违法违规内容（国家主权、暴力、恐怖主义、赌博、毒品、枪支等）；② 严禁人身攻击与不文明用语（辱骂、嘲讽、地域/性别/职业歧视、谐音脏话、阴阳怪气）；③ 严禁低幼言论与不当交流（强行引战、断章取义、装傻卖萌、无理取闹，经提醒仍继续视为恶意）；④ 严禁敏感与争议话题（政治、历史、民族、宗教、未经证实的突发事件、饭圈互撕），管理员有权随时中止；⑤ 严禁商业广告与垃圾信息（微商、拼团、引流、刷单、资金盘），禁止刷屏表情包与长段重复文字；⑥ 严禁泄露隐私与冒充他人。<br><br><b>[3] 内容发布规范</b><br>禁止色情低俗、血腥暴力、虐待动物、事故现场等视觉内容（需警示者请先打码）；禁止连续发送大量图片导致刷屏，发送长视频/高清大图前建议先询问；禁止发送含病毒、木马的可执行文件（.exe/.apk/.bat 等）；分享文档内容同样须遵守言论规范；尊重版权，不传播盗版与侵权资料；外部链接落地页须合规，禁止钓鱼、虚假红包、抽奖欺诈类链接。<br><br><b>[4] 关于文明参赛</b><br>禁止利用小号装新人进行恶意行为，禁止在比赛中恶意攻击选手、发表不当言论。`},
+    {t:"二、联赛分级与正式比赛", b:`<b>[1] 联赛体系（2026 赛季起）</b><br>1. <b>MFDPL（特级联赛）</b>：最高级别，与常规联赛相对独立，跳出常规积分晋升链条。以通过赛会审核的顶尖车手为主体，可与高水平车手同场竞技。不占常规联赛席位，不参与常规降级，名单与赛制由赛会单独公告。<br>2. <b>一级联赛</b>　3. <b>二级联赛</b><br>常规联赛实行逐级晋升：<span class="ok">二级 → 一级 → MFDPL</span>（MFDPL 为审核晋升，不按积分自动升级）。每级联赛每场正赛参赛席位至多为 <b>12 个</b>。各级联赛均沿用现有车队体系，同一车队可在各级联赛拥有车手。<br><br><b>[2] 新手准入与逐级晋升</b><br>① 新成员入赛须通过赛会审核卷，由赛会内部管理；② 新选手从低级联赛打起，每赛季根据定级赛表现重新定级；③ 原则上不得跳级，赛会特批除外；④ 高一级出现席位空缺时，由赛会按次级联赛表现递补。<br><br><b>[5] 车队制</b><br>① 每个赛季设 <b>4 个车队</b>；② 每级联赛每场正赛设 12 个席位，每队每赛季可招收一级联赛正赛选手至多 3 个席位、二级联赛正赛选手至多 3 个席位，车队内部可招收替补人员，不限人手；③ 车队内包含来自不同级别的车手，车手按自身级别参加对应联赛；④ 车队选人可多选，但正赛席位每场每队固定 3 个。`},
+    {t:"三、定级赛", b:`<b>赛制：</b>① 定级赛每赛季举办一次，用于评估全体车手当前实力，作为晋升、维持或降级的依据；② 分 <b>二键组</b> 与 <b>摇杆组</b>，两组独立进行，<span class="hl">不混组</span>；④ 每位选手 <b>白胎起步，个人刷圈</b>，需赛会成员监督，总共可刷 <b>5 圈</b>（特殊情况可申请补圈），取最快单圈为最终成绩；⑥ 所有批次跑完后，同组内汇总所有选手最快单圈，按组内排名取 <b>前 50%</b>。<br><br><b>晋升规则：</b>每组别圈速前 50% 车手获得晋升一级联赛资格。<br><b>维持与降级规则：</b>高级别车手若在定级赛中跌出前 50%，降级至次级联赛。<br><b>原 120% 标准废除：</b>原「排位赛圈速快于/慢于及格线 120%」条款正式废除，统一以 <span class="hl">定级赛杆位圈速 107% 为及格线</span>，次级联赛不限。<br>前 50% 车手（且在圈速榜单首位的 107% 内）加入一级联赛；若可加入一级联赛者 &gt; 12 人，车队领队可在第 13 名及以后且进入前 50% 的车手中选择参与一级联赛，后 50% 车手加入二级联赛（替补人员可正常参与二级联赛，但一、二级联赛积分不互通）。<br><b>人员限制：</b>每个车队至多可选择 3 名参与一级联赛正赛的人员（可不满 3 人）和 3 名参与二级联赛正赛的人员（可不满 3 人）。`},
+    {t:"四、MFDPL 晋升、维持与降级", b:`<b>1. 晋升条件</b>：在一级联赛或常规联赛赛季/半赛季中全程制霸，具备将第二名套圈一圈甚至两圈的实力，或与第一、第二集团断层式分离。符合条件的车手，由赛事主办方及赛会人员进行审核与实力评估，评估通过后方可晋升 MFDPL。<br><b>2. 原「实力过强限制」废除</b>：原「实力过强者只允许参加娱乐赛、排位赛及其他非正赛」的限制废除。顶尖车手不再因圈速过快被排除正赛，而是进入 MFDPL 审核晋升通道。`},
+    {t:"五、排位赛（Q1 / Q2 / Q3）", b:`① 排位赛采用 Q1/Q2/Q3 三段淘汰制，与 F1 相同；② 参赛人数为 <b>12 人</b>（每队 3 人）；③ <b>Q1</b>：12 人参赛，淘汰至剩余 8 人；④ <b>Q2</b>：8 人参赛，淘汰至剩余 4 人；⑤ <b>Q3</b>：4 人参赛，决出杆位至第 4 名；⑥ 被淘汰车手按被淘汰时所处位置排定正赛发车顺位，<span class="hl">不重新排序</span>；⑦ 排位赛期间如出现严重跳表（因网络/服务器卡顿等导致游戏内显示用时比实际用时少），需进行二次排位并录屏，由任意赛会成员进行手动计时核定。`},
+    {t:"六、关于防守", b:`<b>合理防守</b>：允许正常的线路防守（如晚刹车、走内线等行为）。<br><b>恶意阻挡</b>：故意在赛道上停车（从松开按键开始算起）<span class="hl">超过 3 秒者</span>，视为恶意阻挡，警告一次，并取消本站比赛成绩（记作 <b>Dsq</b>）。<br><b>逆行</b>：在赛道上逆向行驶，经核实后，警告一次，并取消本站成绩（记作 <b>Dsq</b>）。`},
+    {t:"七、关于让车", b:`当被领先者套圈时，被套圈车手<span class="hl">必须主动让出赛车线（进入缓冲区）</span>。若未及时让车，且对后方领先车手造成影响，经核实后，警告一次，并取消本站成绩（记作 <b>Dsq</b>）。<br>如领先者未对套圈车手提供让车指令，或让车指令不规范，<span class="ok">双方均无责任</span>。`},
+    {t:"八、关于红旗", b:`<b>触发条件</b>：正赛进行中，场上除去因严重断触、断网、闪退、卡区块、服务器崩坏、语音断连等意外退赛者 <span class="hl">小于 4 人时</span>，或单场正赛中 <span class="hl">黄旗次数 ≥ 3 次</span> 时，触发红旗。<br>红旗后：<b>起步选胎必须与重启前一致</b>，<b>发车位需与排位排名一致</b>，违规者警告一次，并取消当站成绩（记作 <b>Dsq</b>）。<br>若经赛会调查存在<span class="hl">恶意主张红旗</span>的行为，违者警告一次，并取消当站成绩（记作 <b>Dsq</b>）。`},
+    {t:"九、关于进站", b:`正赛期间<span class="hl">须强制完成一次进站换胎</span>。<br>整场比赛<span class="hl">禁止全程重复轮胎</span>（例如不可使用红红红或黄黄黄等策略），必须使用不同的轮胎组合；但<b>可换重复轮胎</b>（例如可使用白红红、白黄黄、黄红红或红黄黄等策略）。违者警告一次，并取消当站成绩（记作 <b>Dsq</b>）。`},
+    {t:"十、语音频道纪律", b:`排位赛及正赛期间，<span class="hl">严禁进入比赛语音频道干扰</span>。进入语音频道后，禁止进行大喊大叫、播放音乐或言语干扰等违规行为，违者警告一次。`},
+    {t:"十一、关于积分", b:`每场正赛结束后，车手按冲线顺序获得积分：<br><div class="chips"><span class="chip">🥇 第1名 · 25 分</span><span class="chip">🥈 第2名 · 15 分</span><span class="chip">🥉 第3名 · 10 分</span><span class="chip">第4名 · 8 分</span><span class="chip">其余完赛车手 · 1 分</span><span class="chip" style="color:var(--red2)">⚡ 全场最快单圈 +1 分</span></div><br>※ 未能完赛的车手不计积分。<br>※ 如果车手因特殊情况中途退赛，经赛会调查确认其在退赛前已具备明显领先优势，<span class="ok">可以保留当时排名与其排名可获得的对应积分</span>。`},
+    {t:"十二、参赛键位使用限制", b:`允许使用<span class="ok">摇杆</span>以及<span class="ok">二键</span>，但<span class="hl">不允许电脑端玩家参加，或连接外设</span>，违者<span class="hl">永久禁赛</span>。`},
+    {t:"十三、改动规则限制", b:`在未经主办方允许的情况下，私自更改赛事系统、规则、群规等，<span class="hl">直接永久禁赛，不作任何解释</span>。<b>只有主办方（繁星）能授权你改动。</b>`},
+    {t:"十四、关于车队", b:`目前车队分组情况：已加入车队者若想转入别的车队，需经原车队队长同意，并保留当前积分。<br><br><b>当前车队与积分归属：</b><div class="chips"><span class="chip">LMB 车队：小苗 50 · Cookie 8 · 东风 11 · 张火山 2 · 青柠 0 · MedcAly 0（合计 71，跨级累计）</span><span class="chip">零界车队：繁星 20 · 小船只 15 · 小灿 1 · 小蒋 0 · 帅酷 0 · 辛月 0 · 小王 0</span><span class="chip">凛冬车队：cilmea 25 · 海森 11 · 羽苍 1 · 林间 0</span><span class="chip">浪革车队：飞飞 16 · 洛白 15 · 叉斯 3 · 氮碜 0 · Anar 0 · 小水 0</span></div><br>（注：以上为 v1.9 时期积分记录，2026 赛季积分以最新公告为准。每一级联赛均沿用现有车队体系，同一车队可分布在不同级别联赛。车手晋升时，低级别积分按联赛积分兑换制处理；车队归属不变。）`},
+    {t:"十五、其他", b:`在比赛前期做错发车位、抢跑等违规行为，可提前向主办方申报并进行红旗；未提前申诉者在赛会后期调查时若核实有此情况，将<span class="hl">取消本站成绩，并警告一次</span>。`},
+    {t:"十六、关于处罚", b:`<b>[1] 提醒</b>：群内成员违反规则后由管理员提醒，并扣除 1 点「梦想驾照」积分以示警告。<br><b>[2] 观察期</b>：每位选手的梦想驾照共有 <b>5 个积分</b>，一旦用完即设立观察期，并再次补全。第一次触犯设立 <b>1 个月</b> 观察期，第二次触犯设立 <b>半年</b> 观察期，第三次触犯设立 <b>永久</b> 观察期。<br><b>[3] 无期限禁赛</b>：设立永久观察期后再次用完梦想驾照积分，将被<span class="hl">无期限禁赛</span>；无期限禁赛期间可通过递交检讨书，经赛会成员同意后可回归本赛事。<br><b>[4] 永久禁赛</b>：无期限禁赛后再次用完梦想驾照积分额度，将被<span class="hl">永久禁赛</span>，除特殊原因，否则不允许再次回归本赛事。`},
+    {t:"十七、最终解释权", b:`本群规及赛规为 <b>v.2026 版</b>，并非最终定稿。运营组将根据 MFD 赛事发展情况及实际突发状况，适时调整并补充细则，届时以最新公告为准。<br><br>历次修订：初稿 2026-06-19 18:11 ｜ 二稿 2026-06-19 19:19 ｜ 三稿 2026-07-22 09:46 ｜ 四稿 2026-07-31 20:30 ｜ 五稿 2026-07-31 20:47 ｜ 六稿 2026-08-08 20:08 ｜ 七稿 2026-08-09 22:35 ｜ 八稿 2026-08-10 10:46 ｜ 九稿 2026-08-10 22:51 ｜ 2026 版 ｜ 十稿 2026-09-25 18:49。`}
+  ],
+  news:[
+    {d:"2026.10.20", tag:"战报", t:"小苗丹东、河北、内蒙古三站全胜，61 分领跑车手榜", c:"LMB 车队小苗以三站三冠、两次全场最快单圈的统治级表现，提前锁定 2026 赛季车手总冠军。", cls:"nt-race"},
+    {d:"2026.10.18", tag:"规则", t:"v.2026 赛规十稿发布：原 120% 标准废除", c:"统一以定级赛杆位圈速 107% 为及格线，次级联赛不限；原「实力过强限制」同步废除。", cls:"nt-rule"},
+    {d:"2026.10.12", tag:"商务", t:"ICExb（小冰）、繁星RISE 成为 MFD 冠名赞助商", c:"感谢 ICExb（小冰）、繁星RISE、残风006、Medc Aly、lmbtl012 对 2026 赛季的支持。", cls:"nt-biz"},
+    {d:"2026.10.08", tag:"招募", t:"2026 赛季车手招募开启，四车队虚位以待", c:"新选手从低级联赛打起，定级赛分二键组与摇杆组、不混组，白胎起步刷 5 圈取最快。", cls:"nt-biz"},
+    {d:"2026.10.03", tag:"战报", t:"河北站：小苗 76.6s 杆位并夺冠，FL 76.0s", c:"LMB 车队包揽杆位与冠军，东风第四、Cookie 第四（未晋级 Q3）。", cls:"nt-race"},
+    {d:"2026.09.26", tag:"战报", t:"丹东站揭幕：小苗 94.7s 杆位，25 分领跑", c:"2026 赛季四站征程开启。海森 114.1s 排位第四，正赛第四。", cls:"nt-race"}
+  ],
+  // 相册：src 为真实合成冰面质感图；替换成你的比赛截图只需改 src
+  gallery:[
+    {src:"gal-dandong.jpg", cap:"丹东站 · 揭幕战"},
+    {src:"gal-hebei.jpg", cap:"河北站 · 夜战"},
+    {src:"gal-neimenggu.jpg", cap:"内蒙古站 · 极速圈"},
+    {src:"gal-tianjin.jpg", cap:"天津站 · 收官"},
+    {src:"gal-podium.jpg", cap:"颁奖台"},
+    {src:"gal-grid.jpg", cap:"发车格"},
+    {src:"gal-tire.jpg", cap:"强制进站换胎"},
+    {src:"gal-crowd.jpg", cap:"观众共创"}
+  ],
+  // 赛道投稿：仅展示赛道介绍
+  tracks:[
+    {n:"1", t:"极光弯道（粉丝投稿 · 内蒙古站候选）", d:"连续 S 弯 + 冰面低附着路段，考验晚刹车与走线。"},
+    {n:"2", t:"零界直道（零界车队设计）", d:"1.2km 全油门直道接 90° 直角弯，超车窗口集中在最后一弯。"},
+    {n:"3", t:"凛冬之环（海森提案）", d:"双向赛道，逆时针与顺时针各跑 3 圈，轮胎管理决定胜负。"},
+    {n:"4", t:"浪革港（洛白 / 叉斯 联创）", d:"滨海城市赛道，隧道段存在严重跳表风险，需二次排位+录屏核定。"}
+  ],
+  // 赞助商：tier 1 = 冠名（金边），tier 2 = 战略
+  sponsors:[
+    {n:"ICExb（小冰）", tier:1},
+    {n:"繁星RISE", tier:1},
+    {n:"残风006", tier:2},
+    {n:"Medc Aly", tier:2},
+    {n:"lmbtl012", tier:2}
+  ]
+};
+
+/* ==================================================================
+   渲染：只改 DATA，下面的代码不用动
+   ================================================================== */
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const P = (a,b,t)=>t>0?Math.pow(a,b):-Math.pow(-a,b); // 保留接口
+
+// 赛程
+$('#tl').innerHTML = DATA.schedule.map(s=>{
+  const pill = s.status==='done'?'<span class="pill pill-done">已完赛</span>'
+             : s.status==='active'?'<span class="pill pill-active">进行中</span>'
+             :'<span class="pill pill-next">下一站</span>';
+  return `<div class="tl-item ${s.status==='active'?'active':s.status==='done'?'done':''} rv">
+    <div class="tl-d">${s.date}</div>
+    <div class="tl-b"><h4>${s.track}${pill}</h4><small>2026 赛季 · MFD 资格赛</small>
+    <div class="res">🏁 ${s.res}</div></div></div>`;
+}).join('');
+
+// 积分榜（自动降序）
+const medal = ['rk-gold','rk-silver','rk-bronze'];
+function renderStandings(){
+  const list = [...DATA.drivers].sort((a,b)=>b.pts-a.pts||(b.fl||0)-(a.fl||0));
+  const teams = DATA.teams.slice().sort((a,b)=>b.sum-a.sum);
+  const rows = (arr, isTeam)=>arr.map((r,i)=>{
+    const init = (r.n||r.name).charAt(0).toUpperCase()||'M';
+    return `<tr>
+      <td class="rk ${i<3?medal[i]:''}">${i+1}</td>
+      <td><div class="driver">${isTeam?'<div class="av" style="background:linear-gradient(135deg,#7c4dff,#b79bff)">'+init+'</div>':'<div class="av">'+init+'</div>'}${isTeam?r.name:r.n}</div></td>
+      <td style="color:#8d9aad">${r.a||'—'}</td>
+      <td>${isTeam?'<span class="team-tag">'+r.d1.length+' 席 / 级</span>':'<span class="team-tag">'+r.t+'</span>'}</td>
+      <td class="pts">${isTeam?r.sum:r.pts}${r.fl?' <span class="fl">+FL</span>':''}${r.dsq?' <span class="fl">Dsq</span>':''}${r.dnf?' <span style="color:#b98a4a">Dnf</span>':''}${r.dns?' <span style="color:#7c899c">Dns</span>':''}${r.dnq?' <span style="color:#7c899c">Dnq</span>':''}${r.ban?' <span class="fl">Ban</span>':''}</td>
+    </tr>`;
+  }).join('');
+  DATA._rows = {drivers:rows(list,false), teams:rows(teams,true)};
+  $('#st-body').innerHTML = DATA._rows.drivers;
+}
+let curTab = 'drivers';
+function tab(t, el){
+  curTab = t;
+  $$('.tab').forEach(b=>b.classList.toggle('on', b.dataset.t===t));
+  $('#st-body').innerHTML = t==='drivers' ? DATA.drivers.slice().sort((a,b)=>b.pts-a.pts||(b.fl||0)-(a.fl||0))
+    .map((r,i)=>{
+      const init = r.n.charAt(0).toUpperCase()||'M';
+      return `<tr><td class="rk ${i<3?medal[i]:''}">${i+1}</td>
+      <td><div class="driver"><div class="av">${init}</div>${r.n}</div></td>
+      <td style="color:#8d9aad">${r.a}</td>
+      <td><span class="team-tag">${r.t}</span></td>
+      <td class="pts">${r.pts}${r.fl?' <span class="fl">+FL</span>':''}${r.dsq?' <span class="fl">Dsq</span>':''}${r.dnf?' <span style="color:#b98a4a">Dnf</span>':''}${r.dns?' <span style="color:#7c899c">Dns</span>':''}${r.ban?' <span class="fl">Ban</span>':''}</td></tr>`;
+    }).join('')
+    : DATA.teams.slice().sort((a,b)=>b.sum-a.sum).map((r,i)=>{
+      const init = r.name.charAt(0).toUpperCase()||'M';
+      return `<tr><td class="rk ${i<3?medal[i]:''}">${i+1}</td>
+      <td><div class="driver"><div class="av" style="background:linear-gradient(135deg,#7c4dff,#b79bff)">${init}</div>${r.name}</div></td>
+      <td style="color:#8d9aad">—</td>
+      <td><span class="team-tag">${r.d1.length} 席 / 级</span></td>
+      <td class="pts">${r.sum}</td></tr>`;
+    }).join('');
+}
+renderStandings();
+
+// 规则折叠
+$('#rules-box').innerHTML = DATA.rules.map((r,i)=>
+  `<details ${i===0?'open':''} class="blk rv">
+     <summary><span class="idx">${String(i+1).padStart(2,'0')}</span>${r.t}</summary>
+     <div class="rule-body">${r.b}</div>
+   </details>`).join('');
+
+// 车队名单
+$('#teams-box').innerHTML = DATA.teams.map(tt=>`
+  <div class="team ${tt.cls} blk rv">
+    <div class="team-hd">
+      <div class="badge">${tt.name.slice(0,1)}</div>
+      <div>
+        <h3>${tt.name}</h3>
+        <div class="sum">车队积分 <b>${tt.sum}</b></div>
+      </div>
+    </div>
+    <div class="tcat">一级联赛 · 正赛席位 ${tt.d1.length}/3</div>
+    ${tt.d1.map(s=>`<div class="seat ${s.vac?'vac':''}"><span class="g"></span><span class="nm">${s.g}组 · ${s.n}</span><span class="st">${s.vac?'待递补':'首发'}</span></div>`).join('')}
+    ${tt.sub.length?`<div class="tcat" style="color:var(--red2)">替补 / 二级可用</div>
+    ${tt.sub.map(s=>`<div class="seat sub"><span class="g"></span><span class="nm">${s.n}</span><span class="st">替补</span></div>`).join('')}`:''}
+    <div class="tcat">二级联赛</div>
+    ${tt.d2.map(s=>`<div class="seat ${s.vac?'vac':''}"><span class="g" style="background:var(--cyan)"></span><span class="nm">${s.n}</span><span class="st">二级</span></div>`).join('')}
+  </div>`).join('');
+
+// 新闻
+$('#news-box').innerHTML = DATA.news.map(n=>
+  `<a class="n blk rv" href="#news">
+     <div class="d"><span class="nt ${n.cls}">${n.tag}</span>　${n.d}</div>
+     <h4>${n.t}</h4><p>${n.c}</p>
+   </a>`).join('');
+
+// 相册
+$('#gal').innerHTML = DATA.gallery.map((g,i)=>
+  `<div class="gi rv" onclick="lb('${g.src}','${g.cap}')">
+     <img src="${g.src}" alt="${g.cap}" loading="lazy" decoding="async">
+     <div class="cap">${String(i+1).padStart(2,'0')} · ${g.cap}</div>
+   </div>`).join('');
+function lb(src,cap){
+  const L=$('#lb');
+  L.querySelector('img').src = src;
+  L.querySelector('.cap').textContent = cap;
+  L.classList.add('on');
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') $('#lb').classList.remove('on'); });
+
+// 赛道投稿
+$('#tracks-box').innerHTML = DATA.tracks.map(t=>`
+  <div class="tk blk rv">
+    <div class="tn"><span>${t.n}</span></div>
+    <div class="tk-b">
+      <h4>${t.t}</h4>
+      <p>${t.d}</p>
+    </div>
+  </div>`).join('');
+
+// 赞助商
+$('#sp').innerHTML = DATA.sponsors.map(s=>
+  `<div class="sp blk ${s.tier===1?'t1':'t2'} rv" title="${s.n}">
+     <span class="lv">${s.tier===1?'TITLE SPONSOR':'STRATEGIC'}</span>${s.n}
+   </div>`).join('');
+
+// 数据卡
+$('#st-drivers').textContent = DATA.drivers.length;
+
+/* ==================================================================
+   性能自适应：iPad 5 自动降级，防止闪退
+   ================================================================== */
+const PERF = (()=>{
+  const low = (navigator.deviceMemory && navigator.deviceMemory <= 2) ||
+              /iPad5|iPad4|iPad3|iPhone6,1|iPhone5/.test(navigator.userAgent) ||
+              (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2);
+  if(low) document.documentElement.classList.add('perf-low');
+  return { low, dpr: Math.min(window.devicePixelRatio || 1, 2) };
+})();
+
+/* 速度线：低端机不创建 DOM，避免 30 个合成层拖垮 GPU */
+if(!PERF.low){
+  const box = $('#speed');
+  for(let i=0;i<30;i++){
+    const s = document.createElement('i');
+    s.style.top = Math.random()*100 + '%';
+    s.style.animationDuration = (2.6 + Math.random()*3.4) + 's';
+    s.style.animationDelay = (Math.random()*4) + 's';
+    s.style.opacity = (0.10 + Math.random()*0.30);
+    s.style.width = (70 + Math.random()*110) + 'px';
+    box.appendChild(s);
+  }
+}
+
+/* 倒计时：每秒只改写变化的数字，不触发 layout */
+const cd = {d:$('#cd-d'),h:$('#cd-h'),m:$('#cd-m'),s:$('#cd-s')};
+const target = new Date(DATA.site.nextRace).getTime();
+let prev = {};
+function tick(){
+  let left = target - Date.now();
+  if(left < 0) left = 0;
+  const v = {
+    d: Math.floor(left/864e5),
+    h: Math.floor(left%864e5/36e5),
+    m: Math.floor(left%36e5/6e4),
+    s: Math.floor(left%6e4/1e3)
+  };
+  for(const k in v){
+    if(prev[k] !== v[k]){ cd[k].textContent = String(v[k]).padStart(2,'0'); prev[k]=v[k]; }
+  }
+  if(left>0) requestAnimationFrame(()=>setTimeout(tick, 1000));
+  else cd.s.textContent = 'GO';
+}
+tick();
+document.addEventListener('visibilitychange', ()=>{}); // 切后台时 rAF 自动暂停
+
+/* 滚动：进度条 + 导航高亮 + LOGO 红蓝切换（rAF 节流，不卡主线程） */
+const logo = $('#hero-logo');
+const links = $$('nav a');
+const sections = ['intro','tiers','schedule','standings','rules','teams','news','gallery','tracks','register','sponsors','contact']
+  .map(id=>({el:$('#'+id), a:$('nav a[href="#'+id+'"]')}))
+  .filter(s=>s.el);
+let raf = false;
+function onScroll(){
+  if(raf) return;
+  raf = requestAnimationFrame(()=>{
+    const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    if(h>0) $('#bar').style.width = (y/h*100) + '%';
+    // 导航高亮
+    let cur = '';
+    for(const s of sections){ if(s.el.getBoundingClientRect().top < innerHeight*0.32) cur = s.a; }
+    links.forEach(a=>a.classList.toggle('on', a===cur));
+    // LOGO 切换：进入积分榜/赛道投稿/联系区 → 蓝底 MFD2；其余 → 红底 MFD1
+    const inBlue = ['standings','tracks','contact'].some(id=>{
+      const r = document.getElementById(id).getBoundingClientRect();
+      return r.top < innerHeight*0.5 && r.bottom > innerHeight*0.5;
+    });
+    logo.src = inBlue ? DATA.site.hero2 : DATA.site.hero1;
+    raf = false;
+  });
+}
+addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* 入场动画：IntersectionObserver，首屏只渲染视口内 */
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      // stagger：单页最多 4 项，避免长列表掉帧
+      const kids = e.target.parentElement.children;
+      let i = 0;
+      for(const k of kids){ if(k===e.target) break; if(k.classList && k.classList.contains('rv')) i++; }
+      if(i < 4) e.target.style.transitionDelay = (i*42) + 'ms';
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold:[0,0.12,0.5], rootMargin:'0px 0px -8% 0px'});
+$$('.rv').forEach(el=>io.observe(el));
+
+/* 报名：无后端也能用 —— 调起邮件 + 剪贴板兜底，数据绝不丢 */
+function reg(e){
+  e.preventDefault();
+  const f = e.target;
+  const q = (sel, defv)=>{ const el = f.querySelector(sel); return el ? el.value.trim() : (defv||''); };
+  const payload = {
+    '游戏 ID': q('[name="gameId"]'),
+    '称呼':     q('[name="displayName"]'),
+    '键位':     q('[name="controlType"]'),
+    '意向联赛': q('[name="league"]'),
+    '联系方式': q('[name="contact"]')
+  };
+  const body = `MFD ${DATA.site.season} 车手报名\n` + Object.entries(payload).map(([k,v])=>`${k}：${v}`).join('\n');
+  const plain = decodeURIComponent(encodeURIComponent(body));
+  try{ location.href = `mailto:${DATA.site.email}?subject=${encodeURIComponent(`MFD ${DATA.site.season} 车手报名`)}&body=${encodeURIComponent(body)}`; }catch(err){}
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(plain).then(
+      ()=>toast('✓ 报名信息已复制，请发送给赛事邮箱 fengfanxingyun@qq.com'),
+      ()=>toast('请手动记录：'+plain)
+    );
+  } else toast('请手动记录：'+plain);
+  f.reset();
+  return false;
+}
+function toast(msg){
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;left:50%;bottom:54px;transform:translateX(-50%) translateY(20px);z-index:4000;'
+    + 'background:linear-gradient(135deg,var(--red),var(--cyan));color:#04131a;font-weight:750;font-size:13px;'
+    + 'padding:12px 20px;border-radius:26px;box-shadow:0 16px 40px rgba(0,0,0,.5);opacity:0;transition:all .4s;max-width:88vw';
+  document.body.appendChild(t);
+  requestAnimationFrame(()=>{ t.style.opacity=1; t.style.transform='translateX(-50%) translateY(0)'; });
+  setTimeout(()=>{ t.style.opacity=0; setTimeout(()=>t.remove(), 420); }, 3400);
+}
+
+/* 兜底：单个模块报错不拖垮整站 */
+window.addEventListener('error', e=>{ console.warn('[MFD]', e.message); });
+window.addEventListener('unhandledrejection', e=>{ console.warn('[MFD] promise', e.reason); });
+</script>
+</body>
+</html>
