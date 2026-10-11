@@ -168,6 +168,9 @@ h2{font-size:clamp(26px,5vw,42px);line-height:1.18;font-weight:850;letter-spacin
 .tl{position:relative;padding-left:26px}
 .tl::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;
   background:linear-gradient(180deg,var(--red),var(--cyan),transparent)}
+.tl-phase{position:relative;margin:24px 0 12px;padding:9px 14px;border-left:2px solid var(--red);
+  border-radius:0 10px 10px 0;background:linear-gradient(90deg,rgba(225,6,0,.14),transparent);
+  color:#ff8a80;font-size:12px;font-weight:800;letter-spacing:1.4px}
 .tl-item{position:relative;padding:18px 20px;margin-bottom:12px;border-radius:16px;
   display:flex;gap:16px;align-items:flex-start;transition:transform .36s var(--ease),background .36s var(--ease)}
 .tl-item::before{content:"";position:absolute;left:-24px;top:24px;width:12px;height:12px;border-radius:50%;
@@ -459,7 +462,7 @@ footer .m{color:#7c899c;font-size:11.5px;line-height:1.9;letter-spacing:.6px}
       <a class="btn btn-ghost" href="#rules">赛事总则 v.2026</a>
     </div>
   </div>
-  <div class="hero-meta">下一场 · <b>天津站</b><br>2026.10.24 19:30（北京时间）</div>
+  <div class="hero-meta">下一场 · <b>丹东振安国际赛车场</b><br>元旦</div>
   <div class="scroll-hint">向下滚动</div>
 </header>
 
@@ -510,7 +513,7 @@ footer .m{color:#7c899c;font-size:11.5px;line-height:1.9;letter-spacing:.6px}
 <!-- ================= 赛程 ================= -->
 <section id="schedule">
   <div class="kicker">Race Calendar</div>
-  <div class="sec-head"><div><h2>赛程安排</h2><p class="h2sub">四站定赛季。每站含定级/排位与正赛，正赛强制一次进站换胎，禁止全程重复轮胎组合。</p></div><div class="eyebrow">03</div></div>
+  <div class="sec-head"><div><h2>赛程安排</h2><p class="h2sub">以下五站均未开始，具体比赛日期及开赛时间以赛事公告为准。</p></div><div class="eyebrow">03</div></div>
   <div class="tl rv" id="tl"></div>
 </section>
 
@@ -643,17 +646,18 @@ const DATA = {
   site:{
     name:"MFD 梦想冰船方程式",
     season:"2026",
-    nextRace:"2026-10-24T19:30:00+08:00",   // 倒计时目标：天津站
+    nextRace:"2027-01-01T00:00:00+08:00",   // 倒计时目标：丹东振安国际赛车场（元旦）
     hero1:"一级赛徽.jpg",                     // 一级联赛赛徽
     hero2:"emblem/emblem-mfd2.jpg",          // 二级联赛赛徽（青蓝）
     email:"fengfanxingyun@qq.com",
   },
-  // 赛程（status: done=已完赛 / active=进行中 / next=下一站）
+  // 赛程（status: done=已完赛 / active=进行中 / next=未开始）
   schedule:[
-    {date:"2026.09.26", track:"丹东站", res:"杆位 lmbtl012 94.7s · 冠军 小苗", status:"done"},
-    {date:"2026.10.03", track:"河北站", res:"杆位 小苗 76.6s · 冠军 小苗（FL 76.0s）", status:"done"},
-    {date:"2026.10.17", track:"内蒙古站", res:"杆位 小苗 38.4s · 冠军 小苗", status:"done"},
-    {date:"2026.10.24", track:"天津站（收官）", res:"19:30 开赛 · 现场直播", status:"active"}
+    {date:"元旦", track:"丹东振安国际赛车场", res:"具体比赛日期及开赛时间以公告为准", status:"next"},
+    {date:"寒假", track:"河北邯郸赛车场", res:"具体比赛日期及开赛时间以公告为准", status:"next"},
+    {date:"寒假", track:"吉林通化国际赛车场", res:"具体比赛日期及开赛时间以公告为准", status:"next"},
+    {date:"寒假", track:"广州国际赛车场", res:"具体比赛日期及开赛时间以公告为准", status:"next"},
+    {date:"清明节", track:"上海国际赛车场", res:"具体比赛日期及开赛时间以公告为准", status:"next", phase:"27下半赛季"}
   ],
   // 车手榜：pts 改动后页面自动按积分降序，无需手排
   drivers:[
@@ -769,10 +773,10 @@ const P = (a,b,t)=>t>0?Math.pow(a,b):-Math.pow(-a,b); // 保留接口
 $('#tl').innerHTML = DATA.schedule.map(s=>{
   const pill = s.status==='done'?'<span class="pill pill-done">已完赛</span>'
              : s.status==='active'?'<span class="pill pill-active">进行中</span>'
-             :'<span class="pill pill-next">下一站</span>';
-  return `<div class="tl-item ${s.status==='active'?'active':s.status==='done'?'done':''} rv">
+             :'<span class="pill pill-next">未开始</span>';
+  return `${s.phase?`<div class="tl-phase rv">${s.phase}</div>`:''}<div class="tl-item ${s.status==='active'?'active':s.status==='done'?'done':''} rv">
     <div class="tl-d">${s.date}</div>
-    <div class="tl-b"><h4>${s.track}${pill}</h4><small>2026 赛季 · MFD 资格赛</small>
+    <div class="tl-b"><h4>${s.track}${pill}</h4><small>赛事具体日期以公告为准</small>
     <div class="res">🏁 ${s.res}</div></div></div>`;
 }).join('');
 
