@@ -96,10 +96,12 @@ h2{font-size:clamp(26px,5vw,42px);line-height:1.18;font-weight:850;letter-spacin
 .emblem{width:min(56vw,480px);max-height:300px;object-fit:contain;margin:0 auto}
 .season-timeline{max-width:1320px;margin:76px auto 0;padding:0 22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));position:relative}
 .season-timeline::before{content:"";position:absolute;left:0;right:0;top:56px;height:5px;background:#35363a}
-.season-timeline::after{content:"";position:absolute;left:0;top:56px;width:50%;height:5px;background:var(--red);z-index:1}
 .season-timeline + .hero{padding-top:48px}
 .season-item{position:relative;min-width:0;min-height:96px;padding:8px 18px 34px;text-align:center;color:#8f9198;background:#101116;border-right:1px solid #292a2e}
 .season-item:first-child{border-left:1px solid #292a2e}
+.season-item::before{content:"";position:absolute;left:0;right:0;top:56px;height:5px;background:#35363a;z-index:1}
+.season-item.is-past::before{background:var(--red)}
+.season-item.is-current::before{background:linear-gradient(90deg,var(--red) 0 50%,#35363a 50% 100%)}
 .season-item small{display:block;font-size:12px;font-weight:700;line-height:1.35}
 .season-item strong{display:block;font-size:17px;line-height:1.4}
 .season-item::after{content:"";position:absolute;z-index:2;left:50%;top:47px;width:20px;height:20px;transform:translateX(-50%);
@@ -387,8 +389,9 @@ footer .m{color:#7c899c;font-size:11.5px;line-height:1.9;letter-spacing:.6px}
   .match-arrow{min-height:200px;font-size:19px}
   .match-card{flex-basis:min(82vw,330px);min-height:200px;padding:18px}
   .season-timeline{margin-top:54px;padding:0 12px}
-  .season-timeline::before{top:52px}
+  .season-timeline::before{display:none}
   .season-item{min-height:88px;padding:6px 5px 30px}
+  .season-item::before{top:52px}
   .season-item small{font-size:10px}
   .season-item strong{font-size:14px}
   .season-item::after{top:44px;width:18px;height:18px}
