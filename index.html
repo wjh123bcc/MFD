@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#e10600">
-<meta name="description" content="MFD 梦想冰船方程式赛事官网：赛程、积分榜、赛事规则、车队与车手报名。">
-<title>MFD 梦想冰船方程式 · 2026 赛季</title>
+<meta name="description" content="MFD 梦想冰船方程式 · 2027 赛季与赛事安排。">
+<title>MFD 梦想冰船方程式 · 2027 赛季</title>
 <style>
 /* ============ 性能自适应（iPad 5 / 一加 Turbo 6V 双档） ============ */
 :root{
@@ -94,6 +94,20 @@ h2{font-size:clamp(26px,5vw,42px);line-height:1.18;font-weight:850;letter-spacin
 .champion span{color:#aeb2bc;font-size:12px;font-weight:700;letter-spacing:1px}
 .champion strong{font-size:20px}
 .emblem{width:min(56vw,480px);max-height:300px;object-fit:contain;margin:0 auto}
+.season-timeline{max-width:1320px;margin:76px auto 0;padding:0 22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));position:relative}
+.season-timeline::before{content:"";position:absolute;left:0;right:0;top:56px;height:5px;background:#35363a}
+.season-item{position:relative;min-width:0;min-height:96px;padding:8px 18px 34px;text-align:center;color:#8f9198;background:#101116;border-right:1px solid #292a2e}
+.season-item:first-child{border-left:1px solid #292a2e}
+.season-item small{display:block;font-size:12px;font-weight:700;line-height:1.35}
+.season-item strong{display:block;font-size:17px;line-height:1.4}
+.season-item::after{content:"";position:absolute;z-index:1;left:50%;top:47px;width:20px;height:20px;transform:translateX(-50%);
+  border:4px solid #38393d;border-radius:50%;background:#0a0c12}
+.season-item.is-current{color:#fff;background:linear-gradient(180deg,rgba(225,6,0,.20),transparent 82%)}
+.season-item.is-current small{color:var(--red2)}
+.season-item.is-current::after{border-color:var(--red);background:#0a0c12;box-shadow:0 0 0 3px rgba(225,6,0,.2)}
+.season-item.is-past::after{content:"✓";top:43px;width:28px;height:28px;border:0;background:#f2f2f2;color:#111;
+  font-size:17px;font-weight:900;line-height:28px}
+.season-item.is-future::after{background:#101116}
 .hero .tag{display:none}
 .hero-copy{display:block}
 .hero-meta,.scroll-hint{display:none}
@@ -131,12 +145,12 @@ h2{font-size:clamp(26px,5vw,42px);line-height:1.18;font-weight:850;letter-spacin
   background:rgba(255,255,255,.08);border:1px solid var(--line);color:#d3dae6}
 
 /* ============ 横向赛事日历 ============ */
-.match-section{max-width:1240px;padding-top:74px;padding-bottom:58px}
+.match-section{max-width:1320px;padding-top:58px;padding-bottom:58px}
 .match-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:24px}
 .match-head h2{font-size:clamp(28px,4vw,42px);margin:0}
 .match-head .kicker{margin-bottom:8px}
-.match-controls{display:flex;align-items:center;gap:9px}
-.match-arrow{width:46px;height:46px;display:grid;place-items:center;border:1px solid #41434b;
+.match-carousel{display:grid;grid-template-columns:58px minmax(0,1fr) 58px;gap:12px;align-items:stretch}
+.match-arrow{width:100%;min-height:220px;display:grid;place-items:center;border:1px solid #41434b;
   border-radius:5px;background:#17191f;color:#fff;font-size:24px;cursor:pointer}
 .match-arrow:hover:not(:disabled){background:var(--red);border-color:var(--red)}
 .match-arrow:disabled,.match-arrow.is-disabled{opacity:.42;cursor:not-allowed}
@@ -367,8 +381,16 @@ footer .m{color:#7c899c;font-size:11.5px;line-height:1.9;letter-spacing:.6px}
   .match-section{padding:48px 16px 38px}
   .match-head{align-items:flex-start}
   .match-head h2{font-size:28px}
-  .match-arrow{width:40px;height:40px}
+  .match-carousel{grid-template-columns:38px minmax(0,1fr) 38px;gap:7px}
+  .match-arrow{min-height:200px;font-size:19px}
   .match-card{flex-basis:min(82vw,330px);min-height:200px;padding:18px}
+  .season-timeline{margin-top:54px;padding:0 12px}
+  .season-timeline::before{top:52px}
+  .season-item{min-height:88px;padding:6px 5px 30px}
+  .season-item small{font-size:10px}
+  .season-item strong{font-size:14px}
+  .season-item::after{top:44px;width:18px;height:18px}
+  .season-item.is-past::after{top:41px;width:24px;height:24px;font-size:14px;line-height:24px}
   .home-panels,.rank-columns{grid-template-columns:1fr}
   .join-panel,.rank-panel{min-height:0;padding:23px}
   .join-panel h2{font-size:42px}
@@ -385,560 +407,99 @@ footer .m{color:#7c899c;font-size:11.5px;line-height:1.9;letter-spacing:.6px}
 </style>
 </head>
 <body>
-
 <div id="bar"></div>
-
 <nav>
   <div class="nav-in">
     <div class="brand">
       <div class="mk">MFD</div>
-      <div class="brand-txt"><span>梦想冰船方程式</span><span>MC FORMULA DREAM · 2026</span></div>
+      <div class="brand-txt"><span>梦想冰船方程式</span><span>MC FORMULA DREAM · 2027</span></div>
     </div>
-    <ul>
-      <li><a href="#schedule">赛程</a></li>
-      <li><a href="#dashboard">积分排行</a></li>
-      <li><a href="#tiers">联赛</a></li>
-      <li><a href="#teams">车队</a></li>
-      <li><a href="#news">公告</a></li>
-      <li><a href="#rules">赛规</a></li>
-    </ul>
-    <a class="nav-cta" href="#register">报名参赛</a>
   </div>
 </nav>
 
-<!-- ================= 首屏 ================= -->
+<section class="season-timeline" aria-label="赛季时间轴">
+  <div class="season-item is-past"><small>2026 赛季</small><strong>总冠军：小苗</strong></div>
+  <div class="season-item is-current" aria-current="page"><small>现在</small><strong>2027 赛季</strong></div>
+  <div class="season-item is-future"><small>即将到来</small><strong>2028 赛季</strong></div>
+</section>
+
 <header class="hero" id="top">
   <div class="season-hero">
     <p class="season-kicker">MC FORMULA DREAM · OFFICIAL SEASON</p>
-    <h1>2026 <span>赛季</span></h1>
-    <div class="champion"><span>2026 总冠军</span><strong>小苗</strong></div>
+    <h1>2027 <span>赛季</span></h1>
     <img class="emblem" id="hero-logo" src="一级赛徽.jpg" alt="MFD 一级联赛赛徽" loading="eager">
   </div>
 </header>
 
-<!-- ================= 赛程 ================= -->
 <section id="schedule" class="match-section">
   <div class="match-head">
-    <div><div class="kicker">2026 SEASON · MATCH CALENDAR</div><h2>接下来的比赛</h2></div>
-    <div class="match-controls">
-      <a class="match-arrow is-disabled" id="match-replay" href="#schedule" aria-label="回看已发布比赛视频" aria-disabled="true" title="比赛视频链接待补充">←</a>
-      <button class="match-arrow" id="match-next" type="button" aria-label="查看更多未来比赛">→</button>
-    </div>
+    <div><div class="kicker">2027 SEASON · MATCH CALENDAR</div><h2>接下来的比赛</h2></div>
   </div>
-  <div class="match-viewport" id="match-viewport" aria-label="未来比赛列表">
-    <div class="match-track" id="match-track"></div>
+  <div class="match-carousel">
+    <a class="match-arrow is-disabled" id="match-replay" href="#schedule" aria-label="回看已发布比赛视频" aria-disabled="true" title="比赛视频链接待补充">←</a>
+    <div class="match-viewport" id="match-viewport" aria-label="未来比赛列表" tabindex="0">
+      <div class="match-track" id="match-track"></div>
+    </div>
+    <button class="match-arrow" id="match-next" type="button" aria-label="查看更多未来比赛">→</button>
   </div>
-  <p class="replay-note">已发布比赛视频：链接待补充</p>
+  <p class="replay-note" id="replay-note">左侧箭头：已发布比赛视频链接待补充</p>
 </section>
-
-<!-- ================= 加入与排行榜 ================= -->
-<section class="dashboard" id="dashboard">
-  <div class="home-panels">
-    <div class="join-panel">
-      <div>
-        <div class="kicker">JOIN MFD</div>
-        <h2>加入我们</h2>
-        <p>无论你是车手、车队还是赛事爱好者，都欢迎加入 MFD，一起参与比赛、共创赛道与赛事内容。</p>
-      </div>
-      <a class="btn btn-red" href="#register">报名参赛 <span aria-hidden="true">→</span></a>
-    </div>
-    <div class="rank-panel">
-      <div class="rank-panel-head"><h2>车队与选手排行</h2><span class="kicker">STANDINGS</span></div>
-      <div class="rank-columns">
-        <div class="rank-list"><h3>车队积分</h3><ol id="home-team-rank"></ol></div>
-        <div class="rank-list"><h3>车手积分</h3><ol id="home-driver-rank"></ol></div>
-      </div>
-      <a class="rank-more" href="#standings">查看完整积分榜 →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 赛事介绍 ================= -->
-<section id="intro">
-  <div class="kicker">About the Championship</div>
-  <div class="sec-head">
-    <div>
-      <h2>关于 MFD</h2>
-      <p class="h2sub">Mc 冰船方程式（MFD，MC Formula Dream）是一项由车手与观众共同创造的竞速赛事。2026 赛季全面升级：三级联赛、四支车队、Q1/Q2/Q3 排位淘汰、强制进站换胎、梦想驾照处罚体系。</p>
-    </div>
-    <div class="eyebrow">01</div>
-  </div>
-  <div class="stats rv">
-    <div class="stat blk"><div class="n">2026</div><div class="l">赛季</div><div class="g"></div></div>
-    <div class="stat blk"><div class="n" id="st-drivers">--</div><div class="l">注册车手</div><div class="g"></div></div>
-    <div class="stat blk"><div class="n">4</div><div class="l">车队</div><div class="g"></div></div>
-    <div class="stat blk"><div class="n">3</div><div class="l">联赛级别</div><div class="g"></div></div>
-  </div>
-</section>
-
-<!-- ================= 联赛分级 ================= -->
-<section id="tiers">
-  <div class="kicker">League System</div>
-  <div class="sec-head"><div><h2>联赛体系</h2><p class="h2sub">MFDPL 为审核晋升，不占常规席位、不参与降级；常规联赛逐级晋升：二级 → 一级 → MFDPL。每级联赛每场正赛席位至多 12 个。</p></div><div class="eyebrow">02</div></div>
-  <div class="tiers">
-    <div class="tier tier-pl blk rv">
-      <div class="lvl">PREMIER LEAGUE</div>
-      <h3>MFDPL 特级联赛</h3>
-      <p>最高级别，与常规联赛相对独立，跳出常规积分晋升链条。以通过赛会审核的顶尖车手为主体，可与高水平车手同场竞技。不占常规联赛席位，不参与常规降级。</p>
-      <span class="seat">审核晋升 · 不按积分自动升级</span>
-    </div>
-    <div class="tier tier-1 blk rv">
-      <div class="lvl">DIVISION 1</div>
-      <h3>一级联赛</h3>
-      <p>常规联赛顶级战场。每队每级至多 3 个正赛席位，共 4 队，正赛满席 12 人。</p>
-      <span class="seat">每场 12 席 · 4 队 × 3 人</span>
-    </div>
-    <div class="tier tier-2 blk rv">
-      <div class="lvl">DIVISION 2</div>
-      <h3>二级联赛</h3>
-      <p>新秀起点与替补舞台。定级赛组内前 50% 晋升一级；替补人员可正常参与，但一、二级积分不互通。</p>
-      <span class="seat">定级赛前 50% 晋升</span>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 积分榜 ================= -->
-<section id="standings">
-  <div class="kicker" style="color:var(--red2)">Standings</div>
-  <div class="sec-head"><div><h2>车手积分榜 · 2026 赛季</h2><p class="h2sub">积分制：冠军 25 / 亚军 15 / 季军 10 / 第四 8 / 其余完赛车手 1；全场最快单圈 +1。未完赛不计分；中途退赛但已具明显领先优势者，经赛会确认可保留积分。</p></div><div class="eyebrow">04</div></div>
-  <div class="tabs">
-    <button class="tab on" data-t="drivers" onclick="tab('drivers',this)">车手榜</button>
-    <button class="tab" data-t="teams" onclick="tab('teams',this)">车队榜</button>
-  </div>
-  <div class="blk st-blk rv">
-    <div style="overflow-x:auto">
-      <table>
-        <thead><tr><th>排名</th><th>车手</th><th>缩写</th><th>车队</th><th style="text-align:right">积分</th></tr></thead>
-        <tbody id="st-body"></tbody>
-      </table>
-    </div>
-    <p class="note">※ 数据依据丹东、河北、内蒙古、天津四站成绩核算。<code>dnp</code> 未参赛 · <code>dnf</code> 未完赛 · <code>dns</code> 未起步 · <code>dnq</code> 未晋级 · <code>dsq</code> 取消资格 · <code>FL</code> 全场最快单圈。<br>天津站最终排名：浪革 洛白 +25pts｜LMB 小苗 +16pts（FL 54.8s）｜无 霜落 +10pts｜凛冬 羽苍 +8pts｜零界 帅酷 +1pt｜LMB 张火山 +1pt｜LMB 东风 +1pt｜零界 繁星 0pts（Dsq）。</p>
-  </div>
-</section>
-
-<!-- ================= 规则 ================= -->
-<section id="rules">
-  <div class="kicker">Regulations v.2026</div>
-  <div class="sec-head"><div><h2>赛事总则</h2><p class="h2sub">共 16 章核心条款。点击展开阅读。最终解释权归赛事主办方（繁星）所有，运营组将适时补充细则，以最新公告为准。</p></div><div class="eyebrow">05</div></div>
-  <div id="rules-box"></div>
-</section>
-
-<!-- ================= 车队 ================= -->
-<section id="teams">
-  <div class="kicker">Teams & Drivers</div>
-  <div class="sec-head"><div><h2>车队与车手</h2><p class="h2sub">2026 赛季设 4 支车队。每队每级联赛正赛席位至多 3 个，车队内部可招收替补，不限人手。车手按自身级别参加对应联赛，车队归属不变。</p></div><div class="eyebrow">06</div></div>
-  <div class="teams" id="teams-box"></div>
-</section>
-
-<!-- ================= 新闻 ================= -->
-<section id="news">
-  <div class="kicker">Newsroom</div>
-  <div class="sec-head"><div><h2>新闻公告</h2><p class="h2sub">战报、规则变更、商务合作与车手招募。重要变更同步于群公告公示。</p></div><div class="eyebrow">07</div></div>
-  <div class="news" id="news-box"></div>
-</section>
-
-<!-- ================= 赛道投稿 ================= -->
-<section id="tracks">
-  <div class="kicker" style="color:var(--red2)">Track Submission</div>
-  <div class="sec-head"><div><h2>赛道投稿</h2><p class="h2sub">观众与车手共创赛道。投稿经赛会审核后可入选正赛轮转。</p></div><div class="eyebrow">09</div></div>
-  <div class="tracks" id="tracks-box"></div>
-</section>
-
-<!-- ================= 报名 ================= -->
-<section id="register">
-  <div class="kicker">Join MFD</div>
-  <div class="sec-head"><div><h2>报名参赛</h2><p class="h2sub">免费报名。新选手从低级联赛打起，每赛季按定级赛表现重新定级，原则上不得跳级（赛会特批除外）。</p></div><div class="eyebrow">10</div></div>
-  <div class="reg">
-    <div class="reg-txt blk rv" style="padding:24px">
-      <h3>如何成为 MFD 车手</h3>
-      <p>提交报名后，赛会将在 48 小时内联系你，安排定级赛批次与监督人员。</p>
-      <ul class="reg-steps">
-        <li data-i="1">填写报名表单（姓名、游戏 ID、常用键位）</li>
-        <li data-i="2">参加定级赛：白胎起步，个人刷圈，共 5 圈，取最快单圈</li>
-        <li data-i="3">按组内最快单圈前 50% 定级，进入对应联赛</li>
-        <li data-i="4">加入车队，参与 Q1/Q2/Q3 排位与正赛</li>
-      </ul>
-      <p style="margin-top:16px;color:var(--red2);font-size:12.5px">※ 允许使用摇杆与二键，不允许电脑端玩家参赛或连接外设，违者永久禁赛。</p>
-    </div>
-    <form class="blk rv" style="padding:24px" onsubmit="return reg(event)">
-      <label class="fld"><span class="l">游戏 ID</span><input name="gameId" required autocomplete="off" placeholder="如：lmbtl012"></label>
-      <label class="fld"><span class="l">真实姓名 / 称呼</span><input name="displayName" required autocomplete="name" placeholder="用于赛会与群内识别"></label>
-      <label class="fld"><span class="l">操作方式</span>
-        <select name="controlType" required><option value="">请选择</option><option>摇杆</option><option>二键</option></select>
-      </label>
-      <label class="fld"><span class="l">意向联赛</span>
-        <select name="league"><option>服从赛会定级</option><option>二级联赛</option><option>一级联赛（需审核）</option></select>
-      </label>
-      <label class="fld"><span class="l">联系方式（QQ / 微信 / 手机号）</span><input name="contact" required autocomplete="tel" placeholder="仅用于赛会通知"></label>
-      <button class="submit" type="submit">提交报名 →</button>
-      <p style="margin-top:12px;font-size:11px;color:#7c899c">提交即表示同意《MFD 赛事总则 v.2026》。赛会承诺不向第三方泄露你的联系方式。</p>
-    </form>
-  </div>
-</section>
-
-<!-- ================= 赞助商 ================= -->
-<section id="sponsors">
-  <div class="kicker">Partners</div>
-  <div class="sec-head"><div><h2>合作伙伴</h2><p class="h2sub">感谢以下品牌与个人对 MFD 的支持。冠名级享有赛事命名权与全场露出，战略级享有车队与直播露出。</p></div><div class="eyebrow">11</div></div>
-  <div class="sp-grid" id="sp"></div>
-</section>
-
-<!-- ================= 联系 ================= -->
-<section id="contact">
-  <div class="kicker">Contact</div>
-  <div class="sec-head"><div><h2>联系我们</h2><p class="h2sub">赛事主办方：繁星。商务合作、车队入驻、媒体采访、车手申诉，均可通过下方渠道联系。</p></div><div class="eyebrow">12</div></div>
-  <div class="contact">
-    <div>
-      <div class="ci blk rv"><div class="ic">✉</div><div><h4>赛事邮箱</h4><p>fengfanxingyun@qq.com</p></div></div>
-      <div class="ci blk rv"><div class="ic">◎</div><div><h4>B 站主页</h4><p>搜索「繁星RISE」「MFD梦想冰船方程式」</p></div></div>
-      <div class="ci blk rv"><div class="ic">🎮</div><div><h4>赛事群</h4><p>扫码加入车手群，获取赛程、直播与申诉通道</p></div></div>
-      <div class="ci blk rv"><div class="ic">🏁</div><div><h4>主办方</h4><p>繁星 · 仅主办方有权授权改动赛事系统与规则</p></div></div>
-    </div>
-    <div class="qr blk rv">
-      <img src="qr.png" alt="MFD 赛事群二维码" loading="lazy">
-      <div>
-        <div style="font-weight:780;font-size:15px">扫码加入 MFD 车手群</div>
-        <small>二维码有效期以群管理设置为准 · 长按可保存</small>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="mk">MFD</div>
-  <div class="m">MC FORMULA DREAM · 梦想冰船方程式 · 2026 赛季<br>本群规及赛规为 v.2026 版，并非最终定稿。运营组将根据实际突发状况适时调整补充，届时以最新公告为准。<br>© 2026 MFD 赛事组委会 · 最终解释权归主办方所有</div>
-</footer>
 
 <script>
-/* ==================================================================
-   唯一需要改的数据区（以后"随时改"只动这里）
-   ================================================================== */
-const DATA = {
-  site:{
-    name:"MFD 梦想冰船方程式",
-    season:"2026",
-    hero1:"一级赛徽.jpg",                     // 一级联赛赛徽
-    latestReplayUrl:"",                       // 最新已发布比赛视频链接，待补充
-    email:"fengfanxingyun@qq.com",
-  },
-  // 赛程（status: done=已完赛 / active=进行中 / next=未开始）
-  schedule:[
-    {date:"元旦", track:"丹东振安国际赛车场", res:"具体比赛日期及开赛时间以公告为准", status:"next", phase:"27上半赛季"},
-    {date:"寒假", track:"河北邯郸赛车场", res:"具体比赛日期及开赛时间以公告为准", status:"next"},
-    {date:"寒假", track:"吉林通化国际赛车场", res:"具体比赛日期及开赛时间以公告为准", status:"next"},
-    {date:"寒假", track:"广州国际赛车场", res:"具体比赛日期及开赛时间以公告为准", status:"next"},
-    {date:"清明节", track:"上海国际赛车场", res:"具体比赛日期及开赛时间以公告为准", status:"next", phase:"27下半赛季"},
-    {date:"五一", track:"金华国际赛车场", res:"具体比赛日期及开赛时间以公告为准", status:"next"},
-    {date:"端午", track:"福建厦门国际赛车场", res:"具体比赛日期及开赛时间以公告为准", status:"next"},
-    {date:"待定", track:"石家庄国际赛车场", res:"具体比赛日期及开赛时间以公告为准", status:"next"}
-  ],
-  // 车手榜：pts 改动后页面自动按积分降序，无需手排
-  drivers:[
-    {n:"小苗", a:"XM", t:"LMB", pts:61, fl:2, dnf:0},
-    {n:"cilmea", a:"CL", t:"凛冬", pts:25},
-    {n:"繁星", a:"FAX", t:"零界", pts:20, dsq:1},
-    {n:"飞飞", a:"FEF", t:"浪革", pts:16},
-    {n:"洛白", a:"LUO", t:"浪革", pts:15},
-    {n:"小船只", a:"LBZ", t:"零界", pts:15, ban:true},
-    {n:"海森", a:"HAS", t:"凛冬", pts:11},
-    {n:"东风", a:"DFC", t:"LMB", pts:11},
-    {n:"Cookie(曲奇)", a:"COK", t:"LMB", pts:8, dsq:1},
-    {n:"张火山", a:"ZHH", t:"LMB", pts:2, fl:1},
-    {n:"叉斯", a:"CSR", t:"浪革", pts:3, dsq:1},
-    {n:"羽苍", a:"YVC", t:"凛冬", pts:1, dnf:1},
-    {n:"小灿", a:"XCN", t:"零界", pts:1},
-    {n:"青柠", a:"QIN", t:"LMB", pts:0, dnf:2},
-    {n:"氮碜", a:"DAC", t:"浪革", pts:0},
-    {n:"帅酷", a:"SHA", t:"零界", pts:0, dsq:1},
-    {n:"林间", a:"LUJ", t:"凛冬", pts:0},
-    {n:"小王", a:"WAN", t:"零界", pts:0},
-    {n:"MedcAly", a:"HOO", t:"LMB", pts:0, dnf:1},
-    {n:"小水", a:"MAR", t:"浪革", pts:0},
-    {n:"梨宾", a:"LIB", t:"无车队", pts:0, dns:1},
-    {n:"小蒋", a:"JIA", t:"零界", pts:0},
-    {n:"霜落", a:"SFL", t:"LMB", pts:0},
-    {n:"辛月", a:"XNY", t:"零界", pts:0},
-    {n:"Anar", a:"ANR", t:"浪革", pts:0},
-    {n:"村东", a:"CUD", t:"无车队", pts:0}
-  ],
-  teams:[
-    {name:"LMB 车队", sum:82, cls:"lmb",
-     d1:[{g:"A",n:"小苗"},{g:"B",n:"飞飞"},{g:"C",n:"霜落"}],
-     sub:[{n:"东风"},{n:"Cookie(曲奇)"},{n:"张火山"},{n:"青柠"},{n:"MedcAly"}],
-     d2:[{n:"苏沫"},{n:"叉斯"}]},
-    {name:"凛冬车队", sum:37, cls:"lindong",
-     d1:[{g:"A",n:"网友"},{g:"B",n:"羽苍"},{g:"C",n:"东风"}],
-     sub:[{n:"cilmea"},{n:"海森"},{n:"林间"}],
-     d2:[{n:"小爱"}]},
-    {name:"零界车队", sum:36, cls:"lingjie",
-     d1:[{g:"A",n:"小蒋"},{g:"B",n:"张火山"},{g:"C",n:"帅酷"}],
-     sub:[{n:"繁星（替补）"},{n:"小船只"},{n:"小灿"},{n:"辛月"},{n:"小王"}],
-     d2:[{n:"待补"}]},
-    {name:"浪革车队", sum:34, cls:"lang",
-     d1:[{g:"A",n:"空缺（待递补）",vac:1},{g:"B",n:"空缺（待递补）",vac:1},{g:"C",n:"Anar"}],
-     sub:[{n:"洛白"},{n:"叉斯"},{n:"氮碜"},{n:"小水"}],
-     d2:[{n:"Bug_Cat"}]}
-  ],
-  // 规则（折叠面板）
-  rules:[
-    {t:"一、语言规范", b:`<b>[1] 总则与基本原则</b><br>本群宗旨：为成员提供一个和谐、友善、高效、专业的交流平台。任何发言、分享行为均需遵守国家法律法规及本群规。适用于群内所有成员，涵盖文字、语音、图片、表情包、动图、视频、文件、小程序卡片、直播链接、外部网站链接等一切形式。<br><b>解释权与修改权：</b>群主及管理员保留对本群规的最终解释权及随时修改的权利，修改后在群公告公示，视为所有成员已知悉。<br><br><b>[2] 言论规范</b><br>① 严禁违法违规内容（国家主权、暴力、恐怖主义、赌博、毒品、枪支等）；② 严禁人身攻击与不文明用语（辱骂、嘲讽、地域/性别/职业歧视、谐音脏话、阴阳怪气）；③ 严禁低幼言论与不当交流（强行引战、断章取义、装傻卖萌、无理取闹，经提醒仍继续视为恶意）；④ 严禁敏感与争议话题（政治、历史、民族、宗教、未经证实的突发事件、饭圈互撕），管理员有权随时中止；⑤ 严禁商业广告与垃圾信息（微商、拼团、引流、刷单、资金盘），禁止刷屏表情包与长段重复文字；⑥ 严禁泄露隐私与冒充他人。<br><br><b>[3] 内容发布规范</b><br>禁止色情低俗、血腥暴力、虐待动物、事故现场等视觉内容（需警示者请先打码）；禁止连续发送大量图片导致刷屏，发送长视频/高清大图前建议先询问；禁止发送含病毒、木马的可执行文件（.exe/.apk/.bat 等）；分享文档内容同样须遵守言论规范；尊重版权，不传播盗版与侵权资料；外部链接落地页须合规，禁止钓鱼、虚假红包、抽奖欺诈类链接。<br><br><b>[4] 关于文明参赛</b><br>禁止利用小号装新人进行恶意行为，禁止在比赛中恶意攻击选手、发表不当言论。`},
-    {t:"二、联赛分级与正式比赛", b:`<b>[1] 联赛体系（2026 赛季起）</b><br>1. <b>MFDPL（特级联赛）</b>：最高级别，与常规联赛相对独立，跳出常规积分晋升链条。以通过赛会审核的顶尖车手为主体，可与高水平车手同场竞技。不占常规联赛席位，不参与常规降级，名单与赛制由赛会单独公告。<br>2. <b>一级联赛</b>　3. <b>二级联赛</b><br>常规联赛实行逐级晋升：<span class="ok">二级 → 一级 → MFDPL</span>（MFDPL 为审核晋升，不按积分自动升级）。每级联赛每场正赛参赛席位至多为 <b>12 个</b>。各级联赛均沿用现有车队体系，同一车队可在各级联赛拥有车手。<br><br><b>[2] 新手准入与逐级晋升</b><br>① 新成员入赛须通过赛会审核卷，由赛会内部管理；② 新选手从低级联赛打起，每赛季根据定级赛表现重新定级；③ 原则上不得跳级，赛会特批除外；④ 高一级出现席位空缺时，由赛会按次级联赛表现递补。<br><br><b>[5] 车队制</b><br>① 每个赛季设 <b>4 个车队</b>；② 每级联赛每场正赛设 12 个席位，每队每赛季可招收一级联赛正赛选手至多 3 个席位、二级联赛正赛选手至多 3 个席位，车队内部可招收替补人员，不限人手；③ 车队内包含来自不同级别的车手，车手按自身级别参加对应联赛；④ 车队选人可多选，但正赛席位每场每队固定 3 个。`},
-    {t:"三、定级赛", b:`<b>赛制：</b>① 定级赛每赛季举办一次，用于评估全体车手当前实力，作为晋升、维持或降级的依据；② 分 <b>二键组</b> 与 <b>摇杆组</b>，两组独立进行，<span class="hl">不混组</span>；④ 每位选手 <b>白胎起步，个人刷圈</b>，需赛会成员监督，总共可刷 <b>5 圈</b>（特殊情况可申请补圈），取最快单圈为最终成绩；⑥ 所有批次跑完后，同组内汇总所有选手最快单圈，按组内排名取 <b>前 50%</b>。<br><br><b>晋升规则：</b>每组别圈速前 50% 车手获得晋升一级联赛资格。<br><b>维持与降级规则：</b>高级别车手若在定级赛中跌出前 50%，降级至次级联赛。<br><b>原 120% 标准废除：</b>原「排位赛圈速快于/慢于及格线 120%」条款正式废除，统一以 <span class="hl">定级赛杆位圈速 107% 为及格线</span>，次级联赛不限。<br>前 50% 车手（且在圈速榜单首位的 107% 内）加入一级联赛；若可加入一级联赛者 &gt; 12 人，车队领队可在第 13 名及以后且进入前 50% 的车手中选择参与一级联赛，后 50% 车手加入二级联赛（替补人员可正常参与二级联赛，但一、二级联赛积分不互通）。<br><b>人员限制：</b>每个车队至多可选择 3 名参与一级联赛正赛的人员（可不满 3 人）和 3 名参与二级联赛正赛的人员（可不满 3 人）。`},
-    {t:"四、MFDPL 晋升、维持与降级", b:`<b>1. 晋升条件</b>：在一级联赛或常规联赛赛季/半赛季中全程制霸，具备将第二名套圈一圈甚至两圈的实力，或与第一、第二集团断层式分离。符合条件的车手，由赛事主办方及赛会人员进行审核与实力评估，评估通过后方可晋升 MFDPL。<br><b>2. 原「实力过强限制」废除</b>：原「实力过强者只允许参加娱乐赛、排位赛及其他非正赛」的限制废除。顶尖车手不再因圈速过快被排除正赛，而是进入 MFDPL 审核晋升通道。`},
-    {t:"五、排位赛（Q1 / Q2 / Q3）", b:`① 排位赛采用 Q1/Q2/Q3 三段淘汰制，与 F1 相同；② 参赛人数为 <b>12 人</b>（每队 3 人）；③ <b>Q1</b>：12 人参赛，淘汰至剩余 8 人；④ <b>Q2</b>：8 人参赛，淘汰至剩余 4 人；⑤ <b>Q3</b>：4 人参赛，决出杆位至第 4 名；⑥ 被淘汰车手按被淘汰时所处位置排定正赛发车顺位，<span class="hl">不重新排序</span>；⑦ 排位赛期间如出现严重跳表（因网络/服务器卡顿等导致游戏内显示用时比实际用时少），需进行二次排位并录屏，由任意赛会成员进行手动计时核定。`},
-    {t:"六、关于防守", b:`<b>合理防守</b>：允许正常的线路防守（如晚刹车、走内线等行为）。<br><b>恶意阻挡</b>：故意在赛道上停车（从松开按键开始算起）<span class="hl">超过 3 秒者</span>，视为恶意阻挡，警告一次，并取消本站比赛成绩（记作 <b>Dsq</b>）。<br><b>逆行</b>：在赛道上逆向行驶，经核实后，警告一次，并取消本站成绩（记作 <b>Dsq</b>）。`},
-    {t:"七、关于让车", b:`当被领先者套圈时，被套圈车手<span class="hl">必须主动让出赛车线（进入缓冲区）</span>。若未及时让车，且对后方领先车手造成影响，经核实后，警告一次，并取消本站成绩（记作 <b>Dsq</b>）。<br>如领先者未对套圈车手提供让车指令，或让车指令不规范，<span class="ok">双方均无责任</span>。`},
-    {t:"八、关于红旗", b:`<b>触发条件</b>：正赛进行中，场上除去因严重断触、断网、闪退、卡区块、服务器崩坏、语音断连等意外退赛者 <span class="hl">小于 4 人时</span>，或单场正赛中 <span class="hl">黄旗次数 ≥ 3 次</span> 时，触发红旗。<br>红旗后：<b>起步选胎必须与重启前一致</b>，<b>发车位需与排位排名一致</b>，违规者警告一次，并取消当站成绩（记作 <b>Dsq</b>）。<br>若经赛会调查存在<span class="hl">恶意主张红旗</span>的行为，违者警告一次，并取消当站成绩（记作 <b>Dsq</b>）。`},
-    {t:"九、关于进站", b:`正赛期间<span class="hl">须强制完成一次进站换胎</span>。<br>整场比赛<span class="hl">禁止全程重复轮胎</span>（例如不可使用红红红或黄黄黄等策略），必须使用不同的轮胎组合；但<b>可换重复轮胎</b>（例如可使用白红红、白黄黄、黄红红或红黄黄等策略）。违者警告一次，并取消当站成绩（记作 <b>Dsq</b>）。`},
-    {t:"十、语音频道纪律", b:`排位赛及正赛期间，<span class="hl">严禁进入比赛语音频道干扰</span>。进入语音频道后，禁止进行大喊大叫、播放音乐或言语干扰等违规行为，违者警告一次。`},
-    {t:"十一、关于积分", b:`每场正赛结束后，车手按冲线顺序获得积分：<br><div class="chips"><span class="chip">🥇 第1名 · 25 分</span><span class="chip">🥈 第2名 · 15 分</span><span class="chip">🥉 第3名 · 10 分</span><span class="chip">第4名 · 8 分</span><span class="chip">其余完赛车手 · 1 分</span><span class="chip" style="color:var(--red2)">⚡ 全场最快单圈 +1 分</span></div><br>※ 未能完赛的车手不计积分。<br>※ 如果车手因特殊情况中途退赛，经赛会调查确认其在退赛前已具备明显领先优势，<span class="ok">可以保留当时排名与其排名可获得的对应积分</span>。`},
-    {t:"十二、参赛键位使用限制", b:`允许使用<span class="ok">摇杆</span>以及<span class="ok">二键</span>，但<span class="hl">不允许电脑端玩家参加，或连接外设</span>，违者<span class="hl">永久禁赛</span>。`},
-    {t:"十三、改动规则限制", b:`在未经主办方允许的情况下，私自更改赛事系统、规则、群规等，<span class="hl">直接永久禁赛，不作任何解释</span>。<b>只有主办方（繁星）能授权你改动。</b>`},
-    {t:"十四、关于车队", b:`目前车队分组情况：已加入车队者若想转入别的车队，需经原车队队长同意，并保留当前积分。<br><br><b>当前车队与积分归属：</b><div class="chips"><span class="chip">LMB 车队：小苗 50 · Cookie 8 · 东风 11 · 张火山 2 · 青柠 0 · MedcAly 0（合计 71，跨级累计）</span><span class="chip">零界车队：繁星 20 · 小船只 15 · 小灿 1 · 小蒋 0 · 帅酷 0 · 辛月 0 · 小王 0</span><span class="chip">凛冬车队：cilmea 25 · 海森 11 · 羽苍 1 · 林间 0</span><span class="chip">浪革车队：飞飞 16 · 洛白 15 · 叉斯 3 · 氮碜 0 · Anar 0 · 小水 0</span></div><br>（注：以上为 v1.9 时期积分记录，2026 赛季积分以最新公告为准。每一级联赛均沿用现有车队体系，同一车队可分布在不同级别联赛。车手晋升时，低级别积分按联赛积分兑换制处理；车队归属不变。）`},
-    {t:"十五、其他", b:`在比赛前期做错发车位、抢跑等违规行为，可提前向主办方申报并进行红旗；未提前申诉者在赛会后期调查时若核实有此情况，将<span class="hl">取消本站成绩，并警告一次</span>。`},
-    {t:"十六、关于处罚", b:`<b>[1] 提醒</b>：群内成员违反规则后由管理员提醒，并扣除 1 点「梦想驾照」积分以示警告。<br><b>[2] 观察期</b>：每位选手的梦想驾照共有 <b>5 个积分</b>，一旦用完即设立观察期，并再次补全。第一次触犯设立 <b>1 个月</b> 观察期，第二次触犯设立 <b>半年</b> 观察期，第三次触犯设立 <b>永久</b> 观察期。<br><b>[3] 无期限禁赛</b>：设立永久观察期后再次用完梦想驾照积分，将被<span class="hl">无期限禁赛</span>；无期限禁赛期间可通过递交检讨书，经赛会成员同意后可回归本赛事。<br><b>[4] 永久禁赛</b>：无期限禁赛后再次用完梦想驾照积分额度，将被<span class="hl">永久禁赛</span>，除特殊原因，否则不允许再次回归本赛事。`},
-    {t:"十七、最终解释权", b:`本群规及赛规为 <b>v.2026 版</b>，并非最终定稿。运营组将根据 MFD 赛事发展情况及实际突发状况，适时调整并补充细则，届时以最新公告为准。<br><br>历次修订：初稿 2026-06-19 18:11 ｜ 二稿 2026-06-19 19:19 ｜ 三稿 2026-07-22 09:46 ｜ 四稿 2026-07-31 20:30 ｜ 五稿 2026-07-31 20:47 ｜ 六稿 2026-08-08 20:08 ｜ 七稿 2026-08-09 22:35 ｜ 八稿 2026-08-10 10:46 ｜ 九稿 2026-08-10 22:51 ｜ 2026 版 ｜ 十稿 2026-09-25 18:49。`}
-  ],
-  news:[
-    {d:"2026.10.20", tag:"战报", t:"小苗丹东、河北、内蒙古三站全胜，61 分领跑车手榜", c:"LMB 车队小苗以三站三冠、两次全场最快单圈的统治级表现，提前锁定 2026 赛季车手总冠军。", cls:"nt-race"},
-    {d:"2026.10.18", tag:"规则", t:"v.2026 赛规十稿发布：原 120% 标准废除", c:"统一以定级赛杆位圈速 107% 为及格线，次级联赛不限；原「实力过强限制」同步废除。", cls:"nt-rule"},
-    {d:"2026.10.12", tag:"商务", t:"ICExb（小冰）、繁星RISE 成为 MFD 冠名赞助商", c:"感谢 ICExb（小冰）、繁星RISE、残风006、Medc Aly、lmbtl012 对 2026 赛季的支持。", cls:"nt-biz"},
-    {d:"2026.10.08", tag:"招募", t:"2026 赛季车手招募开启，四车队虚位以待", c:"新选手从低级联赛打起，定级赛分二键组与摇杆组、不混组，白胎起步刷 5 圈取最快。", cls:"nt-biz"},
-    {d:"2026.10.03", tag:"战报", t:"河北站：小苗 76.6s 杆位并夺冠，FL 76.0s", c:"LMB 车队包揽杆位与冠军，东风第四、Cookie 第四（未晋级 Q3）。", cls:"nt-race"},
-    {d:"2026.09.26", tag:"战报", t:"丹东站揭幕：小苗 94.7s 杆位，25 分领跑", c:"2026 赛季四站征程开启。海森 114.1s 排位第四，正赛第四。", cls:"nt-race"}
-  ],
-  // 赛道投稿：仅展示赛道介绍
-  tracks:[
-    {n:"1", t:"极光弯道（粉丝投稿 · 内蒙古站候选）", d:"连续 S 弯 + 冰面低附着路段，考验晚刹车与走线。"},
-    {n:"2", t:"零界直道（零界车队设计）", d:"1.2km 全油门直道接 90° 直角弯，超车窗口集中在最后一弯。"},
-    {n:"3", t:"凛冬之环（海森提案）", d:"双向赛道，逆时针与顺时针各跑 3 圈，轮胎管理决定胜负。"},
-    {n:"4", t:"浪革港（洛白 / 叉斯 联创）", d:"滨海城市赛道，隧道段存在严重跳表风险，需二次排位+录屏核定。"}
-  ],
-  // 赞助商：tier 1 = 冠名（金边），tier 2 = 战略
-  sponsors:[
-    {n:"ICExb（小冰）", tier:1},
-    {n:"繁星RISE", tier:1},
-    {n:"残风006", tier:2},
-    {n:"Medc Aly", tier:2},
-    {n:"lmbtl012", tier:2}
-  ]
-};
+const schedule = [
+  {date:'元旦', track:'丹东振安国际赛车场', phase:'27上半赛季'},
+  {date:'寒假', track:'河北邯郸赛车场'},
+  {date:'寒假', track:'吉林通化国际赛车场'},
+  {date:'寒假', track:'广州国际赛车场'},
+  {date:'清明节', track:'上海国际赛车场', phase:'27下半赛季'},
+  {date:'五一', track:'金华国际赛车场'},
+  {date:'端午', track:'福建厦门国际赛车场'},
+  {date:'待定', track:'石家庄国际赛车场'}
+];
+const matchTrack = document.querySelector('#match-track');
+const matchViewport = document.querySelector('#match-viewport');
+const replayLink = document.querySelector('#match-replay');
+const nextMatchButton = document.querySelector('#match-next');
+const replayUrl = '';
 
-/* ==================================================================
-   渲染：只改 DATA，下面的代码不用动
-   ================================================================== */
-const $ = s => document.querySelector(s);
-const $$ = s => document.querySelectorAll(s);
-const P = (a,b,t)=>t>0?Math.pow(a,b):-Math.pow(-a,b); // 保留接口
-
-// 横向未来赛程
-$('#match-track').innerHTML = DATA.schedule.map((s,i)=>`
+matchTrack.innerHTML = schedule.map((match, index) => `
   <article class="match-card">
-    <div class="match-card-meta"><span class="match-date">${s.date}</span>
-      <span class="match-phase">${s.phase||`第 ${String(i+1).padStart(2,'0')} 站`}</span></div>
-    <h3>${s.track}</h3>
-    <p>${s.res}</p>
-    <span class="match-status">${s.status==='done'?'已结束':s.status==='active'?'进行中':'未开始'}</span>
+    <div class="match-card-meta"><span class="match-date">${match.date}</span>
+      <span class="match-phase">${match.phase || `第 ${String(index + 1).padStart(2, '0')} 站`}</span></div>
+    <h3>${match.track}</h3>
+    <p>具体比赛日期及开赛时间以公告为准</p>
+    <span class="match-status">未开始</span>
   </article>`).join('') + `
-  <article class="match-card match-coming"><div><div class="match-card-meta"><span class="match-date">MORE</span></div>
-    <h3>敬请期待</h3><p>更多赛事信息即将公布</p></div></article>`;
-const matchViewport = $('#match-viewport');
-const replayLink = $('#match-replay');
-if(DATA.site.latestReplayUrl){
-  replayLink.href = DATA.site.latestReplayUrl;
+  <article class="match-card match-coming"><div>
+    <div class="match-card-meta"><span class="match-date">MORE</span></div>
+    <h3>敬请期待</h3><p>更多赛事信息即将公布</p>
+  </div></article>`;
+
+if (replayUrl) {
+  replayLink.href = replayUrl;
   replayLink.target = '_blank';
   replayLink.rel = 'noopener noreferrer';
   replayLink.classList.remove('is-disabled');
   replayLink.removeAttribute('aria-disabled');
   replayLink.title = '打开已发布比赛视频';
-  $('.replay-note').textContent = '左侧箭头：回看已发布比赛视频';
-}else{
-  replayLink.addEventListener('click', e=>{
-    e.preventDefault();
-    toast('已发布比赛视频链接待补充');
+  document.querySelector('#replay-note').textContent = '左侧箭头：回看已发布比赛视频';
+} else {
+  replayLink.addEventListener('click', event => {
+    event.preventDefault();
+    document.querySelector('#replay-note').textContent = '比赛回放视频链接待补充';
   });
 }
-const nextMatchButton = $('#match-next');
-function updateMatchControls(){
+
+function updateMatchControls() {
   nextMatchButton.disabled = matchViewport.scrollLeft + matchViewport.clientWidth >= matchViewport.scrollWidth - 4;
 }
-nextMatchButton.addEventListener('click', ()=>{
-  const card = matchViewport.querySelector('.match-card');
-  if(card) matchViewport.scrollBy({left:card.getBoundingClientRect().width + 14, behavior:'smooth'});
+nextMatchButton.addEventListener('click', () => {
+  const card = matchTrack.querySelector('.match-card');
+  if (card) matchViewport.scrollBy({left: card.getBoundingClientRect().width + 14, behavior: 'auto'});
 });
-matchViewport.addEventListener('scroll', updateMatchControls, {passive:true});
-addEventListener('resize', updateMatchControls);
+matchViewport.addEventListener('scroll', updateMatchControls, {passive: true});
+window.addEventListener('resize', updateMatchControls);
 updateMatchControls();
-
-// 积分榜（自动降序）
-const medal = ['rk-gold','rk-silver','rk-bronze'];
-function renderStandings(){
-  const list = [...DATA.drivers].sort((a,b)=>b.pts-a.pts||(b.fl||0)-(a.fl||0));
-  const teams = DATA.teams.slice().sort((a,b)=>b.sum-a.sum);
-  const rows = (arr, isTeam)=>arr.map((r,i)=>{
-    const init = (r.n||r.name).charAt(0).toUpperCase()||'M';
-    return `<tr>
-      <td class="rk ${i<3?medal[i]:''}">${i+1}</td>
-      <td><div class="driver">${isTeam?'<div class="av" style="background:linear-gradient(135deg,#7c4dff,#b79bff)">'+init+'</div>':'<div class="av">'+init+'</div>'}${isTeam?r.name:r.n}</div></td>
-      <td style="color:#8d9aad">${r.a||'—'}</td>
-      <td>${isTeam?'<span class="team-tag">'+r.d1.length+' 席 / 级</span>':'<span class="team-tag">'+r.t+'</span>'}</td>
-      <td class="pts">${isTeam?r.sum:r.pts}${r.fl?' <span class="fl">+FL</span>':''}${r.dsq?' <span class="fl">Dsq</span>':''}${r.dnf?' <span style="color:#b98a4a">Dnf</span>':''}${r.dns?' <span style="color:#7c899c">Dns</span>':''}${r.dnq?' <span style="color:#7c899c">Dnq</span>':''}${r.ban?' <span class="fl">Ban</span>':''}</td>
-    </tr>`;
-  }).join('');
-  DATA._rows = {drivers:rows(list,false), teams:rows(teams,true)};
-  $('#st-body').innerHTML = DATA._rows.drivers;
-}
-let curTab = 'drivers';
-function tab(t, el){
-  curTab = t;
-  $$('.tab').forEach(b=>b.classList.toggle('on', b.dataset.t===t));
-  $('#st-body').innerHTML = t==='drivers' ? DATA.drivers.slice().sort((a,b)=>b.pts-a.pts||(b.fl||0)-(a.fl||0))
-    .map((r,i)=>{
-      const init = r.n.charAt(0).toUpperCase()||'M';
-      return `<tr><td class="rk ${i<3?medal[i]:''}">${i+1}</td>
-      <td><div class="driver"><div class="av">${init}</div>${r.n}</div></td>
-      <td style="color:#8d9aad">${r.a}</td>
-      <td><span class="team-tag">${r.t}</span></td>
-      <td class="pts">${r.pts}${r.fl?' <span class="fl">+FL</span>':''}${r.dsq?' <span class="fl">Dsq</span>':''}${r.dnf?' <span style="color:#b98a4a">Dnf</span>':''}${r.dns?' <span style="color:#7c899c">Dns</span>':''}${r.ban?' <span class="fl">Ban</span>':''}</td></tr>`;
-    }).join('')
-    : DATA.teams.slice().sort((a,b)=>b.sum-a.sum).map((r,i)=>{
-      const init = r.name.charAt(0).toUpperCase()||'M';
-      return `<tr><td class="rk ${i<3?medal[i]:''}">${i+1}</td>
-      <td><div class="driver"><div class="av" style="background:linear-gradient(135deg,#7c4dff,#b79bff)">${init}</div>${r.name}</div></td>
-      <td style="color:#8d9aad">—</td>
-      <td><span class="team-tag">${r.d1.length} 席 / 级</span></td>
-      <td class="pts">${r.sum}</td></tr>`;
-    }).join('');
-}
-renderStandings();
-const teamLeaders = DATA.teams.slice().sort((a,b)=>b.sum-a.sum);
-const driverLeaders = DATA.drivers.slice().sort((a,b)=>b.pts-a.pts||(b.fl||0)-(a.fl||0));
-$('#home-team-rank').innerHTML = teamLeaders.map(t=>
-  `<li><span class="rank-name">${t.name}</span><span class="rank-score">${t.sum}</span></li>`).join('');
-$('#home-driver-rank').innerHTML = driverLeaders.slice(0,5).map(d=>
-  `<li><span class="rank-name">${d.n}</span><span class="rank-score">${d.pts}</span></li>`).join('');
-
-// 规则折叠
-$('#rules-box').innerHTML = DATA.rules.map((r,i)=>
-  `<details ${i===0?'open':''} class="blk rv">
-     <summary><span class="idx">${String(i+1).padStart(2,'0')}</span>${r.t}</summary>
-     <div class="rule-body">${r.b}</div>
-   </details>`).join('');
-
-// 车队名单
-$('#teams-box').innerHTML = DATA.teams.map(tt=>`
-  <div class="team ${tt.cls} blk rv">
-    <div class="team-hd">
-      <div class="badge">${tt.name.slice(0,1)}</div>
-      <div>
-        <h3>${tt.name}</h3>
-        <div class="sum">车队积分 <b>${tt.sum}</b></div>
-      </div>
-    </div>
-    <div class="tcat">一级联赛 · 正赛席位 ${tt.d1.length}/3</div>
-    ${tt.d1.map(s=>`<div class="seat ${s.vac?'vac':''}"><span class="g"></span><span class="nm">${s.g}组 · ${s.n}</span><span class="st">${s.vac?'待递补':'首发'}</span></div>`).join('')}
-    ${tt.sub.length?`<div class="tcat" style="color:var(--red2)">替补 / 二级可用</div>
-    ${tt.sub.map(s=>`<div class="seat sub"><span class="g"></span><span class="nm">${s.n}</span><span class="st">替补</span></div>`).join('')}`:''}
-    <div class="tcat">二级联赛</div>
-    ${tt.d2.map(s=>`<div class="seat ${s.vac?'vac':''}"><span class="g" style="background:var(--cyan)"></span><span class="nm">${s.n}</span><span class="st">二级</span></div>`).join('')}
-  </div>`).join('');
-
-// 新闻
-$('#news-box').innerHTML = DATA.news.map(n=>
-  `<a class="n blk rv" href="#news">
-     <div class="d"><span class="nt ${n.cls}">${n.tag}</span>　${n.d}</div>
-     <h4>${n.t}</h4><p>${n.c}</p>
-   </a>`).join('');
-
-// 赛道投稿
-$('#tracks-box').innerHTML = DATA.tracks.map(t=>`
-  <div class="tk blk rv">
-    <div class="tn"><span>${t.n}</span></div>
-    <div class="tk-b">
-      <h4>${t.t}</h4>
-      <p>${t.d}</p>
-    </div>
-  </div>`).join('');
-
-// 赞助商
-$('#sp').innerHTML = DATA.sponsors.map(s=>
-  `<div class="sp blk ${s.tier===1?'t1':'t2'} rv" title="${s.n}">
-     <span class="lv">${s.tier===1?'TITLE SPONSOR':'STRATEGIC'}</span>${s.n}
-   </div>`).join('');
-
-// 数据卡
-$('#st-drivers').textContent = DATA.drivers.length;
-
-/* ==================================================================
-   性能自适应：iPad 5 自动降级，防止闪退
-   ================================================================== */
-const PERF = (()=>{
-  const low = (navigator.deviceMemory && navigator.deviceMemory <= 2) ||
-              /iPad5|iPad4|iPad3|iPhone6,1|iPhone5/.test(navigator.userAgent) ||
-              (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2);
-  if(low) document.documentElement.classList.add('perf-low');
-  return { low, dpr: Math.min(window.devicePixelRatio || 1, 2) };
-})();
-
-/* 滚动进度与导航高亮 */
-const links = $$('nav a');
-const sections = ['schedule','dashboard','tiers','teams','news','rules','register']
-  .map(id=>({el:$('#'+id), a:$('nav a[href="#'+id+'"]')}))
-  .filter(s=>s.el&&s.a);
-let raf = false;
-function onScroll(){
-  if(raf) return;
-  raf = requestAnimationFrame(()=>{
-    const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
-    if(h>0) $('#bar').style.width = (y/h*100) + '%';
-    // 导航高亮
-    let cur = '';
-    for(const s of sections){ if(s.el.getBoundingClientRect().top < innerHeight*0.32) cur = s.a; }
-    links.forEach(a=>a.classList.toggle('on', a===cur));
-    raf = false;
-  });
-}
-addEventListener('scroll', onScroll, {passive:true});
-onScroll();
-
-/* 报名：无后端也能用 —— 调起邮件 + 剪贴板兜底，数据绝不丢 */
-function reg(e){
-  e.preventDefault();
-  const f = e.target;
-  const q = (sel, defv)=>{ const el = f.querySelector(sel); return el ? el.value.trim() : (defv||''); };
-  const payload = {
-    '游戏 ID': q('[name="gameId"]'),
-    '称呼':     q('[name="displayName"]'),
-    '键位':     q('[name="controlType"]'),
-    '意向联赛': q('[name="league"]'),
-    '联系方式': q('[name="contact"]')
-  };
-  const body = `MFD ${DATA.site.season} 车手报名\n` + Object.entries(payload).map(([k,v])=>`${k}：${v}`).join('\n');
-  const plain = decodeURIComponent(encodeURIComponent(body));
-  try{ location.href = `mailto:${DATA.site.email}?subject=${encodeURIComponent(`MFD ${DATA.site.season} 车手报名`)}&body=${encodeURIComponent(body)}`; }catch(err){}
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(plain).then(
-      ()=>toast('✓ 报名信息已复制，请发送给赛事邮箱 fengfanxingyun@qq.com'),
-      ()=>toast('请手动记录：'+plain)
-    );
-  } else toast('请手动记录：'+plain);
-  f.reset();
-  return false;
-}
-function toast(msg){
-  const t = document.createElement('div');
-  t.textContent = msg;
-  t.style.cssText = 'position:fixed;left:50%;bottom:54px;transform:translateX(-50%) translateY(20px);z-index:4000;'
-    + 'background:linear-gradient(135deg,var(--red),var(--cyan));color:#04131a;font-weight:750;font-size:13px;'
-    + 'padding:12px 20px;border-radius:26px;box-shadow:0 16px 40px rgba(0,0,0,.5);opacity:0;transition:all .4s;max-width:88vw';
-  document.body.appendChild(t);
-  requestAnimationFrame(()=>{ t.style.opacity=1; t.style.transform='translateX(-50%) translateY(0)'; });
-  setTimeout(()=>{ t.style.opacity=0; setTimeout(()=>t.remove(), 420); }, 3400);
-}
-
-/* 兜底：单个模块报错不拖垮整站 */
-window.addEventListener('error', e=>{ console.warn('[MFD]', e.message); });
-window.addEventListener('unhandledrejection', e=>{ console.warn('[MFD] promise', e.reason); });
 </script>
 </body>
 </html>
