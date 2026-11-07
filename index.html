@@ -542,6 +542,64 @@ a.match-card:focus-visible{outline:2px solid #789da6;outline-offset:3px}
   .join-panel,.rank-panel{min-height:0;padding:24px}
   .rank-columns{gap:24px}
 }
+.rules-section{padding-top:0;padding-bottom:112px}
+.rules-head{margin-bottom:28px}
+.rules-head h2{margin-bottom:8px}
+.rules-intro{color:#a1a1aa;font-size:13px}
+.rules-list{border-top:1px solid var(--line)}
+.rules-list details{
+  margin:0;
+  border:0;
+  border-bottom:1px solid var(--line);
+  border-radius:0;
+  background:transparent;
+  transition:none;
+}
+.rules-list details[open]{background:#0d0d10}
+.rules-list summary{
+  min-height:64px;
+  padding:18px 20px;
+  color:#f4f4f5;
+  font-size:15px;
+  font-weight:600;
+}
+.rules-list summary::before{
+  content:"+";
+  width:20px;
+  height:20px;
+  color:#789da6;
+  font-family:Roboto,Inter,monospace;
+  font-size:18px;
+  font-weight:400;
+}
+.rules-list details[open] summary::before{content:"−";transform:none}
+.rules-list summary .idx{
+  min-width:30px;
+  padding:2px 6px;
+  border:1px solid var(--line);
+  border-radius:0;
+  background:transparent;
+  color:#789da6;
+  font-family:Roboto,Inter,monospace;
+  font-size:10px;
+  text-align:center;
+}
+.rules-list .rule-body{
+  padding:0 24px 22px 60px;
+  color:#a1a1aa;
+  font-size:13px;
+  line-height:1.9;
+}
+.rules-list .rule-body p{margin:0 0 7px}
+.rules-list .rule-body ul{padding-left:18px}
+.rules-list .rule-body li{margin:5px 0}
+.rules-list .rule-body b{color:#f4f4f5;font-weight:600}
+.rules-list .rule-body .hl,.rules-list .rule-body .ok{color:#789da6}
+@media(max-width:520px){
+  .rules-section{padding-bottom:80px}
+  .rules-list summary{padding:16px 12px;gap:9px;font-size:14px}
+  .rules-list .rule-body{padding:0 16px 20px 48px;font-size:12.5px}
+}
 </style>
 </head>
 <body>
@@ -591,6 +649,71 @@ a.match-card:focus-visible{outline:2px solid #789da6;outline-offset:3px}
         <div class="rank-list rank-drivers"><h3>车手积分</h3><ol id="home-driver-rank" aria-label="全部车手积分排名"></ol></div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="rules-section" id="rules">
+  <div class="rules-head">
+    <div class="kicker">MFD 2027 · REGULATIONS</div>
+    <h2>赛事规则</h2>
+    <p class="rules-intro">已录入的 V.2027 赛规要点。点击条目展开查看。</p>
+  </div>
+  <div class="rules-list">
+    <details>
+      <summary><span class="idx">01</span>三级联赛</summary>
+      <div class="rule-body">
+        <p><b>MFDPL 特级</b>：审核晋升，不占常规席位，不参与降级。</p>
+        <p>联赛设一级、二级。</p>
+      </div>
+    </details>
+    <details>
+      <summary><span class="idx">02</span>定级赛与晋升</summary>
+      <div class="rule-body">
+        <p>分二键组与摇杆组，不混组；白胎起步，个人刷圈，<b>5 圈取最快</b>；组内前 <b>50%</b> 晋升。</p>
+        <p>原 120% 标准废除，统一为<b>杆位圈速 107%</b>及格线，次级联赛不限。</p>
+      </div>
+    </details>
+    <details>
+      <summary><span class="idx">03</span>车队与席位</summary>
+      <div class="rule-body">
+        <p>每赛季 4 队；每队每级至多 <b>3 席</b>；正赛席位每场每队固定 3 个。</p>
+      </div>
+    </details>
+    <details>
+      <summary><span class="idx">04</span>排位赛 Q1 / Q2 / Q3</summary>
+      <div class="rule-body">
+        <p>12 人 → 8 人 → 4 人；被淘汰按位置排发车顺位，<b>不重新排序</b>。</p>
+        <p>跳表需二次排位、录屏及赛会手动计时。</p>
+      </div>
+    </details>
+    <details>
+      <summary><span class="idx">05</span>积分规则</summary>
+      <div class="rule-body">
+        <p>积分为 <b>25 / 15 / 10 / 8 / 1</b>，最快单圈 +1；未完赛不计分。</p>
+        <p>中途退赛若已具明显领先优势，可保留积分。</p>
+      </div>
+    </details>
+    <details>
+      <summary><span class="idx">06</span>比赛行为、红旗与进站</summary>
+      <div class="rule-body">
+        <ul>
+          <li>恶意阻挡（停车超 <b>3 秒</b>）→ Dsq。</li>
+          <li>被套圈必须进入缓冲区让车；让车指令不规范，双方无责。</li>
+          <li>红旗触发：有效车手少于 4 人或黄旗不少于 3 次；重启选胎须一致、发车位须一致，违者 Dsq；恶意主张红旗 → Dsq。</li>
+          <li>强制一次进站换胎；禁止全程重复轮胎（红红红 / 黄黄黄），可用白红红、红黄黄等组合。</li>
+        </ul>
+      </div>
+    </details>
+    <details>
+      <summary><span class="idx">07</span>参赛设备、改规与处罚</summary>
+      <div class="rule-body">
+        <ul>
+          <li>允许摇杆 / 二键，不允许电脑端玩家或连接外设，违者永久禁赛。</li>
+          <li>私改赛事系统、规则或群规 → 永久禁赛；仅主办方（繁星）可授权。</li>
+          <li>梦想驾照 5 分；观察期 1 月 / 半年 / 永久。无期限禁赛可递交检讨书回归；永久禁赛原则上不可回归。</li>
+        </ul>
+      </div>
+    </details>
   </div>
 </section>
 </main>
